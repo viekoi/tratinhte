@@ -1,0 +1,63 @@
+.btn {
+    border: 0;
+    background-color: #556B2F;
+    outline: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.txt,
+.icon {
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.txt {
+    padding: 1rem 2rem;
+    color: #fff;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateX(-100%);
+    color: #fff;
+}
+
+:global(.btn-animate):hover .txt{
+    transform: translateX(100%);
+}
+
+:global(.btn-animate):hover .icon{
+    transform: translateX(0);
+}
+
+:global(.btn-sm){
+    font-size: 1.3rem;
+}
+
+:global(.btn-sm) .txt{
+    padding: 0.7rem 1.5rem;
+}
+
+.block{
+    width: 100%;
+}
+
+@media (max-width: 1023px){
+    .btn{
+        font-size: 1rem; 
+    }
+}
+

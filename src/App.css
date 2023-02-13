@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+    cursor: pointer;
+}
+img{
+    object-fit: contain;
+    max-width: 100%;
+}
+
+
+.bg-tea{
+    background-color: var(--tea) !important;
+}
+
+.bg-coffee{
+    background-color: var(--coffee) !important;
+}
+
+.bg-milktea{
+    background-color: var(--milktea) !important;
+}
+
+.bg-desert{
+    background-color: var(--desert) !important;
+}
+
+
+
+
+.color-tea{
+   color: var(--tea) !important;
+}
+
+.color-coffee{
+   color: var(--coffee) !important;
+}
+
+.color-milktea{
+   color: var(--milktea) !important;
+}
+
+.color-desert{
+   color: var(--desert) !important;
+}
+
+
+
+
+
+

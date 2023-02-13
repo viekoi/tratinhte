@@ -1,0 +1,47 @@
+.footer{
+    padding: 10px 0;
+    box-shadow: var(--box-shadow);
+    font-size: 1.1rem; 
+}
+
+.title{
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 2rem;
+    font-style: italic;
+}
+
+
+.content p{
+      margin-bottom: 1.25rem;
+    
+}
+
+.content a{
+    font-size: 1.2rem;
+
+}
+
+.content span{
+    font-weight: 700;
+}
+
+.footer :global(.row){
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.footer :global(.row)>div{
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1023px){
+    .footer :global(.row){
+        justify-content: flex-start;
+
+    }
+}
+
+
