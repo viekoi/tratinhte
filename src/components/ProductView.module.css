@@ -93,9 +93,10 @@
 .info-item-description{
     font-size: 2rem;
     line-height: 2rem;
-    width: 70%;
     text-align: justify;
-    margin-left: 1rem;
+    width: 80%;
+    color: rgba(0,0,0,0.5);
+    font-style: italic;
 }
 
 
@@ -174,10 +175,10 @@
         top: 0;
         
     }
-
     .info-item-description{
-        width: 80%;
+        width: 100%;
     }
+
 
     
 

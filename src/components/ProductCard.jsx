@@ -31,11 +31,12 @@ const ProductCard = props => {
                 </div>
                 <h3 className={classes.name}>{props.item.title}</h3>
                 <div className={classes.price}>
-                    {props.item.priceOnSize.map((item,index)=>{
-                       for(var i in item){
-                            return <span key={index+Math.random()}>{i +" " + item[i].toLocaleString({style:"currency", currency:"VND"})}<sup>đ</sup></span>
-                       }
-                       return null
+                    {props.item.size.map((item,index)=>{
+                        const price = (props.item.priceOnSize[item]*1).toLocaleString({ style: "currency", currency: "VND" })
+                        return(
+                            
+                            <span key={index}>{item +" " + price}<sup>đ</sup></span>
+                        )
                     })}
                     {/* <span className="product-card__price__old">
                         <del>{numberWithCommas(399000)}</del>

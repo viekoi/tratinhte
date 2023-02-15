@@ -1,12 +1,11 @@
 .product-view__modal {
     position: fixed;
     z-index: 10000;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     opacity: 1;
     visibility: visible;
@@ -26,6 +25,8 @@
     position: relative;
     animation-fill-mode: forwards;
     will-change: animation;
+    top: 50%;
+
 }
 
 .close {
@@ -43,6 +44,6 @@
     }
     100%{
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-50%);
     }
 }

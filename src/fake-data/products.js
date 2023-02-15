@@ -36,7 +36,8 @@ const tp_08_image = require('../assets/img/tp-08.png')
 const products =[
     {
         title:"Cà Phê Đen",
-        priceOnSize:[{M:15000}],
+        size:["M"],
+        priceOnSize:{M:15000},
         image:cf_01_image,
         categorySlug:"coffee",
         color:"coffee",
@@ -97,7 +98,8 @@ const products =[
     },
     {
         title:"Bạc Xỉu",
-        priceOnSize:[{M:20000}],
+        size:["M"],
+        priceOnSize:{M:20000},
         image:cf_02_image,
         categorySlug:"coffee",
         color:"coffee",
@@ -157,7 +159,8 @@ const products =[
     },
     {
         title:"Cà Phê Sữa",
-        priceOnSize:[{M:18000}],
+        size:["M"],
+         priceOnSize:{M:18000},
         image:cf_03_image,
         categorySlug:"coffee",
         color:"coffee",
@@ -217,7 +220,8 @@ const products =[
     },
     {
         title:"Cà Phê Sữa Tươi",
-        priceOnSize:[{M:20000}],
+        size:["M"],
+        priceOnSize:{M:20000},
         image:cf_04_image,
         categorySlug:"coffee",
         color:"coffee",
@@ -277,7 +281,8 @@ const products =[
     },
     {
         title:"Trà Sữa Đài Loan",
-        priceOnSize:[{M:25000},{L:32000}],
+        size:["M","L"],
+        priceOnSize:{M:25000,L:32000},
         image:mt_01_image,
         categorySlug:"milktea",
         color:"milktea",
@@ -337,7 +342,8 @@ const products =[
     },
     {
         title:"Trà Sữa Ôlong Lài",
-        priceOnSize:[{M:25000},{L:32000}],
+        size:["M","L"],
+        priceOnSize:{M:25000,L:32000},
         image:mt_02_image,
         categorySlug:"milktea",
         color:"milktea",
@@ -397,7 +403,8 @@ const products =[
     },
     {
         title:"Trà Sữa Gạo Rang",
-        priceOnSize:[{M:25000},{L:32000}],
+        size:["M","L"],
+        priceOnSize:{M:25000,L:32000},
         image:mt_03_image,
         categorySlug:"milktea",
         color:"milktea",
@@ -457,7 +464,8 @@ const products =[
     },
     {
         title:"Trà Sữa Thảo Mộc",
-        priceOnSize:[{M:30000},{L:37000}],
+        size:["M","L"],
+        priceOnSize:{M:30000,L:37000},
         image:mt_04_image,
         categorySlug:"milktea",
         color:"milktea",
@@ -517,7 +525,8 @@ const products =[
     },
     {
         title:"Trà Sữa Uyên Ương",
-        priceOnSize:[{M:25000},{L:32000}],
+        size:["M","L"],
+        priceOnSize:{M:25000,L:32000},
         image:mt_05_image,
         categorySlug:"milktea",
         color:"milktea",
@@ -577,7 +586,8 @@ const products =[
     },
     {
         title:"Trà Đen Macchiato",
-        priceOnSize:[{M:35000}],
+        size:["M"],
+        priceOnSize:{M:35000},
         image:t_01_image,
         categorySlug:"tea",
         color:"tea",
@@ -637,7 +647,8 @@ const products =[
     },
     {
         title:"Trà Ôlong Macchiato",
-        priceOnSize:[{M:35000}],
+        size:["M"],
+        priceOnSize:{M:35000},
         image:t_02_image,
         categorySlug:"tea",
         color:"tea",
@@ -697,7 +708,8 @@ const products =[
     },
     {
         title:"Trà Hạt Sen Macchiato",
-        priceOnSize:[{M:40000}],
+        size:["M"],
+        priceOnSize:{M:40000},
         image:t_03_image,
         categorySlug:"tea",
         color:"tea",
@@ -757,7 +769,8 @@ const products =[
     },
     {
         title:"Trà Trái Cây",
-        priceOnSize:[{M:40000}],
+        size:["M"],
+        priceOnSize:{M:40000},
         image:t_04_image,
         categorySlug:"tea",
         color:"tea",
@@ -829,7 +842,8 @@ const products =[
     },
     {
         title:"Trà Ổi Hồng",
-        priceOnSize:[{M:35000}],
+        size:["M"],
+        priceOnSize:{M:35000},
         image:t_05_image,
         categorySlug:"tea",
         color:"tea",
@@ -889,7 +903,8 @@ const products =[
     },
     {
         title:"Trà Đen Vải Thiều",
-        priceOnSize:[{M:30000}],
+        size:["M"],
+        priceOnSize:{M:30000},
         image:t_06_image,
         categorySlug:"tea",
         color:"tea",
@@ -949,7 +964,8 @@ const products =[
     },
     {
         title:"Trà Nhãn",
-        priceOnSize:[{M:35000}],
+        size:["M"],
+        priceOnSize:{M:35000},
         image:t_07_image,
         categorySlug:"tea",
         color:"tea",
@@ -1008,7 +1024,8 @@ const products =[
         slug:"t-07",
     },{
         title:"Trà Đen Thảo Mộc",
-        priceOnSize:[{M:35000}],
+        size:["M"],
+        priceOnSize:{M:35000},
         image:t_08_image,
         categorySlug:"tea",
         color:"tea",
@@ -1068,7 +1085,8 @@ const products =[
     },
     {
         title:"Chè Thảo Mộc",
-        priceOnSize:[{M:40000},{L:50000}],
+        size:["M","L"],
+        priceOnSize:{M:40000,L:50000},
         image:ds_01_image,
         categorySlug:"desert",
         color:"desert",
@@ -1128,7 +1146,8 @@ const products =[
     },
     {
         title:"Chè Đậu Đỏ",
-        priceOnSize:[{M:35000},{L:45000}],
+        size:["M","L"],
+        priceOnSize:{M:35000,L:45000},
         image:ds_02_image,
         categorySlug:"desert",
         color:"desert",
@@ -1188,7 +1207,8 @@ const products =[
     },
     {
         title:"Trứng Nấu Trà Đen",
-        priceOnSize:[{M:20000},{L:25000}],
+        size:["M","L"],
+        priceOnSize:{M:20000,L:25000},
         image:ds_03_image,
         categorySlug:"desert",
         color:"desert",
@@ -1248,8 +1268,9 @@ const products =[
     },
     {
         title:"Tàu Hủ Singapore",
-        priceOnSize:[{M:18000}],
-        image:ds_04_image,
+        size:["M","L"],
+        priceOnSize:{M:18000},
+    image:ds_04_image,
         categorySlug:"desert",
         color:"desert",
         description:"Tàu hủ Singapore mang vị đặc trưng của đậu nành ngọt nhẹ ăn kèm với topping tùy sở thích.",

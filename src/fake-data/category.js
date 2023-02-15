@@ -4,7 +4,7 @@ const category =[
         categorySlug:"coffee",
     },
     {
-        display:"Trà Sữa",
+        display:"Trà sữa",
         categorySlug:"milktea",
     },
     {
@@ -12,7 +12,7 @@ const category =[
         categorySlug:"tea",
     },
     {
-        display:"Tráng miệng",
+        display:"Món ăn nhẹ",
         categorySlug:"desert",
     },
 
