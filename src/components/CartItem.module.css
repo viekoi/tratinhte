@@ -1,0 +1,165 @@
+.cart__item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.image{
+    width: 10%;
+    margin-right: 20px;
+}
+
+.image image{
+    height: 150px;
+}
+
+.info{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.name{
+    width: 40%;
+    font-size: 1.5rem;
+}
+
+.title,.price{
+    font-size: 1.25rem;
+}
+
+.price{
+    width: 15%;
+    text-align: center;
+}
+
+.size{
+    width: 20%;
+}
+.group{
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+
+}
+
+.cartDescription{
+    margin-top: 0.3rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    width: 40%;
+    
+}
+
+.cartDescription>ul{
+    margin-top: 0.3rem;
+}
+
+.cartDescription li{
+    margin-top: 0.3rem;
+}
+
+.cartDescription span{
+    color: rgba(0,0,0,0.5);
+
+}
+.cartDescription li{
+    color: #ccc;
+}
+
+.info__quantity{
+    width: 20%;
+}
+
+.quantity{
+    display: flex;
+    justify-content: center;
+}
+
+.quantity__input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 40%;
+    border: 1px solid #ccc;
+}
+
+.quantity__btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 30%;
+    border: 1px solid #ccc;
+}
+
+
+.del{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    font-size: 1.5rem;
+}
+
+.del i{
+    cursor: pointer;
+}
+
+.del i:hover{
+    color: red;
+}
+
+@media (max-width:1023px){
+    
+
+    .cart__item{
+        width: 100%;
+        
+    }
+
+    .info{
+        align-items: flex-start;
+    }
+
+    .group{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .name,.size,.cartDescription{
+        width: 100%;
+        margin-top:0.3rem ;
+    }
+
+    .info .price{
+        width: 20%;
+        font-size: 1rem;
+
+    }
+
+    .info__quantity{
+        margin: 0 1rem;
+    }
+
+    .image{
+        width: 20%;
+    }
+
+    .info>*{    
+        margin-bottom: 10px;
+    }
+
+    .title,.price{
+        font-size: 1.5rem;
+    }
+
+
+
+}
+

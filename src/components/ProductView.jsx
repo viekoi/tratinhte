@@ -1,9 +1,12 @@
 import classes from './ProductView.module.css'
-import React, { useState,useEffect,useReducer } from 'react'
+import React, { useState,useEffect,useReducer,useContext } from 'react'
+import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import ProductViewModal from './ProductViewModal'
+
 
 import Button from './Button'
+
+import CartContext from '../store/cart-context'
 
 const ProductView = props => {
 
@@ -58,20 +61,24 @@ const ProductView = props => {
         selectedToppings:[],
         selectedSize:product.size[0],
         price:product.priceOnSize[product.size[0]],
+        cartDescription:`${product.size[0]}`,
+        amount:1,
 
     }
 
     const productReducer = (state,action)=>{
+        
         if(action.type === "SETSIZE"){
-            const newSize = findKey(size,true)
-            const updatedPrice = state.price*1 + state.priceOnSize[newSize]*1 - state.priceOnSize[state.selectedSize]*1
+            const updatedSize = findKey(size,true)
+            const updatedPrice = state.price*1 + state.priceOnSize[updatedSize]*1 - state.priceOnSize[state.selectedSize]*1
             const updatedItem = {...state}
-            updatedItem.selectedSize = [newSize]
+            const updatedCartDescription = state.selectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,updatedSize)
+            updatedItem.selectedSize = updatedSize 
             updatedItem.price = [updatedPrice]
+            updatedItem.cartDescription = updatedCartDescription
             return updatedItem
         }
         if(action.type==="SETTOPPING"){
-            
             const existingToppingIndex = state.selectedToppings.findIndex(
                 (item) => item.id===action.item.id
             );
@@ -80,16 +87,20 @@ const ProductView = props => {
                 const updatedPrice = state.price*1 + action.item.price*1
                 const updatedSelectedToppings = [...state.selectedToppings,action.item].sort((a, b) =>
                 a.name.localeCompare(b.name))
+                const updatedCartDescription =updatedSelectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,state.selectedSize)
                 const updatedItem ={...state}
                 updatedItem.selectedToppings = updatedSelectedToppings
                 updatedItem.price = updatedPrice
+                updatedItem.cartDescription = updatedCartDescription
                 return updatedItem
             }else{
                 const updatedSelectedToppings = state.selectedToppings.filter(topping => topping.id !== action.item.id);
                 const updatedPrice = state.price*1 - action.item.price*1
+                const updatedCartDescription = updatedSelectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,state.selectedSize)
                 const updatedItem ={...state}
                 updatedItem.selectedToppings = updatedSelectedToppings
                 updatedItem.price = updatedPrice
+                updatedItem.cartDescription = updatedCartDescription
                 return updatedItem
             }
         }
@@ -106,13 +117,26 @@ const ProductView = props => {
     const [productState,dispatchProductAction] = useReducer(productReducer,productDefaultState)
 
 
+    const cartCtx = useContext(CartContext);
 
+    const addToCartHandler = () => {
+        cartCtx.addItem({
+          ...productState
+        });
+      };
 
-    
+    const onAdd=()=>{
+        addToCartHandler()
+        if(props.onClose){
+            props.onClose()
+        }else{
+            alert("Thêm vào giỏ thành công!!!")
+        }
+            
+    }
     return (
         
         <div className={classes.product}>
-            {console.log("re")}
             <div className={classes.image}>
                 <img src={product.image} alt="" />
             </div>
@@ -142,7 +166,6 @@ const ProductView = props => {
                                 {
                                     product.toppings.map((item, index) => {
                                         const{name} =item
-
                                         return (
                                             <>
                                                 <div onClick={() => { setToppingActiveHander(name,item) }}  className={`${classes[`info-item-list-item`]} ${toppingActive[`${name}`]===true? `active` : ``} topping-hover`} key={index}>
@@ -185,15 +208,19 @@ const ProductView = props => {
               
                 <div className={classes[`info-item`]}>
                     <div className={classes[`info-item-content`]}>
+                        <Link to='/Cart'>
+                            <Button
+                                size="l"
+                                backgroundColor={product.color}
+                                onclick={addToCartHandler}
+                            >
+                                Mua ngay
+                            </Button>
+                        </Link>
                         <Button
                             size="l"
                             backgroundColor={product.color}
-                        >
-                            Mua ngay
-                        </Button>
-                        <Button
-                            size="l"
-                            backgroundColor={product.color}
+                            onclick={onAdd}
                         >
                             Thêm vào giỏ hàng
                         </Button>

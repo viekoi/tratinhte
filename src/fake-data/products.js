@@ -50,7 +50,7 @@ const products =[
             //     image: tp_01_image,
             // },
             // {
-            //     name:"Trân Hoàng Kim",
+            //     name:"Trân Châu Hoàng Kim",
             //     id:"tp-02",
             //     price:5000,
             //     image: tp_02_image
@@ -112,7 +112,7 @@ const products =[
             //     image: tp_01_image,
             // },
             // {
-            //     name:"Trân Hoàng Kim",
+            //     name:"Trân Châu Hoàng Kim",
             //     id:"tp-02",
             //     price:5000,
             //     image: tp_02_image
@@ -173,7 +173,7 @@ const products =[
             //     image: tp_01_image,
             // },
             // {
-            //     name:"Trân Hoàng Kim",
+            //     name:"Trân Châu Hoàng Kim",
             //     id:"tp-02",
             //     price:5000,
             //     image: tp_02_image
@@ -234,7 +234,7 @@ const products =[
             //     image: tp_01_image,
             // },
             // {
-            //     name:"Trân Hoàng Kim",
+            //     name:"Trân Châu Hoàng Kim",
             //     id:"tp-02",
             //     price:5000,
             //     image: tp_02_image
@@ -295,7 +295,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -356,7 +356,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -417,7 +417,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -478,7 +478,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -539,7 +539,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -600,7 +600,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -661,7 +661,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -722,7 +722,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -783,7 +783,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -856,7 +856,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -917,7 +917,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -978,7 +978,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -1038,7 +1038,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -1099,7 +1099,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -1160,7 +1160,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image
@@ -1221,7 +1221,7 @@ const products =[
             //     image: tp_01_image,
             // },
             // {
-            //     name:"Trân Hoàng Kim",
+            //     name:"Trân Châu Hoàng Kim",
             //     id:"tp-02",
             //     price:5000,
             //     image: tp_02_image
@@ -1282,7 +1282,7 @@ const products =[
                 image: tp_01_image,
             },
             {
-                name:"Trân Hoàng Kim",
+                name:"Trân Châu Hoàng Kim",
                 id:"tp-02",
                 price:5000,
                 image: tp_02_image

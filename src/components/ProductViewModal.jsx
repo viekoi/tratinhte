@@ -13,15 +13,15 @@ const ProductViewModal = (props) => {
     return (
         <div className={`${classes[`product-view__modal`]}`} >
             <div className={classes.content}  >
-                <ProductView product={product} />
-                    <div className={classes.close}>
-                        <Button
-                            size="sm" 
-                            onclick={props.onClose}   
-                        >
-                            đóng
-                        </Button>
-                    </div>
+                <ProductView product={product} onClose={props.onClose} />
+                <div className={classes.close}>
+                    <Button
+                        size="sm" 
+                        onclick={props.onClose}   
+                    >
+                        đóng
+                    </Button>
+                </div>
             </div>
         </div>
     )

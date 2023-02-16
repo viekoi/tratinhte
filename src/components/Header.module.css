@@ -64,7 +64,24 @@
     flex: 0 0 10%;
     max-width: 10%;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    
+}
+
+.total-incart{
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    background-color: #556B2F;
+    border-radius: 50%;
+    color: #fff;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
 
 
 }
@@ -74,10 +91,11 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    
 }
 
 .nav-button i {
-    font-size: 1.4rem;
+    font-size: 2rem;
 }
 
 
@@ -109,13 +127,8 @@
 
 }
 
-.mobile-nav>div {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-}
+
+
 
 .mobile-nav .lv-0 {
     height: var(--header-height);
@@ -132,6 +145,8 @@
     font-size: 1.4rem;
     font-weight: 600;
 }
+
+
 
 .header:global(.shrink){
     height: var(--header-tablet-height);
@@ -159,6 +174,8 @@
 
 
 
+
+
 @media (max-width: 1023px) {
 
     .header{
@@ -175,14 +192,41 @@
 
     .mobile {
         display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        margin-right: 1rem;
 
     }
 
-    .mobile-nav-button {
+
+    .total-incart{
+        position: absolute;
+        top: 20%;
+        right: -5px;
+    }
+
+    
+    .mobile .total-incart a{
+        font-size: 1rem; 
+    }
+
+
+
+
+
+
+    .mobile-cart{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         margin-right: 1rem;
+        position: relative;
+    }
+
+    .mobile-nav-button{
+        display: flex;
+        justify-content: space-evenly;
+
     }
 
     .mobile-nav-button a {
@@ -190,10 +234,9 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        width: 100%;
         font-size: 2.5rem;
         font-weight: 2.5rem;
-        margin: 0 1.5rem;
+
     }
 
     :global(.row) {
