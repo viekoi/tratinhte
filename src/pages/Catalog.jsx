@@ -1,19 +1,48 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { db } from '../firebase-config'
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";
+
+
 import Helmet from '../components/Helmet'
 import classes from './Catalog.module.css'
 import ProductCard from '../components/ProductCard'
 import CheckBox from '../components/CheckBox'
 
-import producData from '../fake-data/products'
+
+
 import category from '../fake-data/category'
 import Button from '../components/Button'
 const Catalog = () => {
+
+
+  const productsCollectionRef = collection(db, "products");
+
+  const getAllProducts = async () => {
+    try {
+      const data = await getDocs(productsCollectionRef);
+      const products = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      setProductList(products.sort((a, b) => {
+        const titleCompare = a.title.localeCompare(b.title)
+        const categorySlugCompare = a.categorySlug.localeCompare(b.categorySlug)
+        return titleCompare && categorySlugCompare
+      }))
+    } catch (er) {
+      console.log(er)
+    }
+
+
+
+  }
 
   const initFiler = {
     category: []
   }
 
-  const productList = producData.getAllProducts()
+  const [productList, setProductList] = useState([])
+
 
   const [products, setProducts] = useState(productList)
 
@@ -55,12 +84,18 @@ const Catalog = () => {
     },
     [filter, productList],
 
+  )
 
-    
-    )
-    useEffect(() => {
-      updateProducts()
-    }, [updateProducts])
+
+  useEffect(() => {
+    getAllProducts()
+    window.scrollTo(0, 0)
+  }, []);
+
+  useEffect(() => {
+    updateProducts()
+    window.scrollTo(0, 0)
+  }, [updateProducts])
 
   const filterRef = useRef(null)
   const filterContainerModalRef = useRef(null)
@@ -69,7 +104,7 @@ const Catalog = () => {
 
   const stopPropagationHandler = (e) => {
     e.stopPropagation()
-}
+  }
 
   const showHideFilter = () => {
     filterRef.current.classList.toggle('active')

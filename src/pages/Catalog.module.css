@@ -5,6 +5,7 @@
     justify-content: flex-start;
     margin-bottom: 10rem;
     padding: 0 4rem;
+    min-height:  calc(100vh - var(--header-height));
 
 }
 
@@ -78,7 +79,8 @@
 @media (max-width: 1023px) {
     .catalog {
         flex-direction: column;
-        margin-top: calc(var(--header-height) + 50px);
+        margin-top: var(--header-tablet-height);
+        min-height:  calc(100vh - var(--header-tablet-height));
     }
 
 

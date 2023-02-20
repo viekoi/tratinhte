@@ -7,6 +7,10 @@ import ProductViewModal from './ProductViewModal'
 
 const ProductCard = props => {
 
+
+
+
+
     const portalElement = document.getElementById('overlays');
     const[modalActive,setModalActive] =useState(false)
     const setModalActiveHandler =()=>{

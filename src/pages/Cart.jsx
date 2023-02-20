@@ -1,28 +1,49 @@
 import classes from './Cart.module.css'
 import React, { useEffect, useState,useContext } from 'react'
 import { Link} from 'react-router-dom'
+import { db } from '../firebase-config'
+import {
+  collection,
+  query,
+  where,
+  getdoc
+} from "firebase/firestore";
 
 import Helmet from '../components/Helmet'
 import CartItem from '../components/CartItem'
 import Button from '../components/Button'
-
-import productData from '../fake-data/products'
-
 import CartContext from '../store/cart-context'
 const Cart = () => {
 
     const cartCtx = useContext(CartContext)
     const cartItems = cartCtx.items
+    const productsCollectionRef = collection(db, "products");
+
+    const getCartItemsInfo = ()=>{
+        let res = []
+        if(cartItems.length>0){
+            cartItems.forEach(e=>{
+                const q = query(productsCollectionRef,where("slug","==",e.slug))
+                res.push({
+                    ...e,
+                    product:q
+                })
+            })
+        }
+        return res
+          
+       
+    }
 
 
 
-    const [cartProducts, setCartProducts] = useState(productData.getCartItemsInfo(cartItems))
+    const [cartProducts, setCartProducts] = useState(getCartItemsInfo)
     const [totalProducts, setTotalProducts] = useState(0)
 
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
-        setCartProducts(productData.getCartItemsInfo(cartItems))
+        setCartProducts(getCartItemsInfo)
         setTotalPrice(cartItems.reduce((total, item) => total + (Number(item.amount) * Number(item.price)), 0))
         setTotalProducts(cartItems.reduce((total, item) => total + Number(item.amount), 0))
     }, [cartItems])
