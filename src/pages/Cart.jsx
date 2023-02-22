@@ -5,8 +5,7 @@ import { db } from '../firebase-config'
 import {
   collection,
   query,
-  where,
-  getdoc
+  where
 } from "firebase/firestore";
 
 import Helmet from '../components/Helmet'

@@ -1,5 +1,7 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {useLocation} from 'react-router-dom'
+import {db} from '../firebase-config'
+import {collection,getDocs,where} from 'firebase/firestore'
 
 
 import Helmet from '../components/Helmet'
@@ -8,13 +10,40 @@ import ProductCard from '../components/ProductCard'
 import ProductView from '../components/ProductView'
 
 
-import productData from '../fake-data/products'
+
 
 const Product = () => {
+
+
+  const productsCollectionRef = collection(db, "products");
+  const [products,setProducts] = useState([])
+  // const [product,setProduct] = useState({})
+
+  const getAllProducts = async () => {
+    try {
+      const data = await getDocs(productsCollectionRef);
+      const products = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      setProducts(products.sort((a, b) => {
+        const titleCompare = a.title.localeCompare(b.title)
+        const categorySlugCompare = a.categorySlug.localeCompare(b.categorySlug)
+        return titleCompare && categorySlugCompare
+      }))
+    } catch (er) {
+      console.error(er)
+    }
+  }
+
+  
+
+
+
   let {state}= useLocation();
-  const product = productData.getProductBySlug(state.props.slug)
-  const products = productData.getAllProducts()
+  const product = state.props
   const relatedProducts  = products.filter(e =>{return((e.categorySlug===state.props.categorySlug) && (e.slug!==state.props.slug))})
+
+  useEffect(() => {
+    getAllProducts()
+  }, []);
 
   useEffect(()=>{
     window.scrollTo(0,0)

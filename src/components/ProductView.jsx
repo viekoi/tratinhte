@@ -13,42 +13,29 @@ const ProductView = props => {
 
 
     let product = props.product
-    const baseSize = {}
-    baseSize[product.size[0]] = true
-    const [size, setSize] = useState(baseSize)
-    const [toppingActive,setToppingActive] = useState({})
+    const [size, setSize] = useState(product.size[0])
+    const toppingList = product.toppings.map((topping)=>{
+        return({name:topping.name,isChecked:false})
+    })
+
+    const [toppingActive,setToppingActive] = useState(toppingList)
     const setSizeHander=(e)=>{
-        const newSize = {...size}
-        for(var i in  newSize ){
-            newSize[i]=false
-          }
-          newSize[e] = true
-          setSize(newSize)
-          setSizeProducerHander()
+        setSize(e)
+        setSizeProducerHander(e)
     }
-    const setToppingActiveHander=(name,item)=>{
-        if(toppingActive[name]){
-            if(toppingActive[name]===true){
-                const newToppingActive = {...toppingActive}
-                newToppingActive[name]=false
-                setToppingActive(newToppingActive)
-            }else {
-                const newToppingActive = {...toppingActive}
-                newToppingActive[name]=true
-                setToppingActive(newToppingActive)
-            }
-        }else{
-            const newToppingActive = {...toppingActive}
-            newToppingActive[name]= true
-            setToppingActive(newToppingActive)
-        }
+    const setToppingActiveHander=(index,item)=>{
+        const newToppingActive = [...toppingActive]
+        newToppingActive[index].isChecked = !newToppingActive[index].isChecked
+        setToppingActive(newToppingActive)
         setSelectedToppingsProducerHander(item)
-        
     }
+        
+    
+    
 
     useEffect(() => {
-        setToppingActive({})
-        setSize(baseSize)
+        setToppingActive(toppingList)
+        setSize(product.size[0])
     },[product] );
 
     const findKey=function getKeyByValue(object, value) {
@@ -69,7 +56,7 @@ const ProductView = props => {
     const productReducer = (state,action)=>{
         
         if(action.type === "SETSIZE"){
-            const updatedSize = findKey(size,true)
+            const updatedSize = action.size
             const updatedPrice = state.price*1 + state.priceOnSize[updatedSize]*1 - state.priceOnSize[state.selectedSize]*1
             const updatedItem = {...state}
             const updatedCartDescription = state.selectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,updatedSize)
@@ -106,8 +93,8 @@ const ProductView = props => {
         }
     }
 
-    const setSizeProducerHander=()=>{
-        dispatchProductAction({type:"SETSIZE"})
+    const setSizeProducerHander=(size)=>{
+        dispatchProductAction({type:"SETSIZE",size:size})
     }
 
     const setSelectedToppingsProducerHander=(item)=>{
@@ -165,10 +152,10 @@ const ProductView = props => {
                             <div className={`${classes[`info-item-list`]} topping-list`}>
                                 {
                                     product.toppings.map((item, index) => {
-                                        const{name} =item
+                                        
                                         return (
                                             <>
-                                                <div onClick={() => { setToppingActiveHander(name,item) }}  className={`${classes[`info-item-list-item`]} ${toppingActive[`${name}`]===true? `active` : ``} topping-hover`} key={index}>
+                                                <div onClick={() => { setToppingActiveHander(index,item) }}  className={`${classes[`info-item-list-item`]} ${toppingActive[index].isChecked ? `active` : ``} topping-hover`} key={index}>
                                                     <div className={`${classes.circle}`}> <img src={item.image} alt="" /> </div>
                                                     <div className={`${classes[`topping-item-description`]} bg-${product.color}`}>
                                                         <div className={classes[`topping-item-description-name`]}>{item.name}</div>
@@ -196,7 +183,7 @@ const ProductView = props => {
                             {
                                 product.size.map((item, index) => {
                                     return(
-                                        <div onClick={() => { setSizeHander(item) }} className={`${classes[`info-item-list-item`]} ${size[item]===true ? `active` : ``} `} key={index}>
+                                        <div onClick={() => { setSizeHander(item) }} className={`${classes[`info-item-list-item`]} ${size===item ? `active` : ``} `} key={index}>
                                                    <div className={`${classes.circle} bg-${product.color}`}>{item}</div>
                                         </div>
                                     )
@@ -230,6 +217,7 @@ const ProductView = props => {
         </div>
     )
 }
+
 ProductView.propTypes = {
     product: PropTypes.object.isRequired
 }

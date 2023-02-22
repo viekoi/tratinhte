@@ -9,7 +9,6 @@ import CartContext from '../store/cart-context'
 
 
 
-const logo_image = require('../assets/img/logo.jpg')
 
 
 const mainNav = [
@@ -80,7 +79,7 @@ const Header = () => {
         <div className="row">
           <div className={`${classes.logo} col l-3 m-3 `}>
             <Link to='/'>
-              <img src={logo_image} alt="" />
+              <img src="/img/logo.jpg" alt="" />
             </Link>
           </div>
           <div className={classes.mobile}>
