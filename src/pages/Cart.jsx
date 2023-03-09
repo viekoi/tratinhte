@@ -1,48 +1,32 @@
 import classes from './Cart.module.css'
-import React, { useEffect, useState,useContext } from 'react'
-import { Link} from 'react-router-dom'
-import { db } from '../firebase-config'
-import {
-  collection,
-  query,
-  where
-} from "firebase/firestore";
+import React, { useEffect, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
+
 
 import Helmet from '../components/Helmet'
 import CartItem from '../components/CartItem'
 import Button from '../components/Button'
 import CartContext from '../store/cart-context'
+
 const Cart = () => {
 
     const cartCtx = useContext(CartContext)
     const cartItems = cartCtx.items
-    const productsCollectionRef = collection(db, "products");
-
-    const getCartItemsInfo = ()=>{
-        let res = []
-        if(cartItems.length>0){
-            cartItems.forEach(e=>{
-                const q = query(productsCollectionRef,where("slug","==",e.slug))
-                res.push({
-                    ...e,
-                    product:q
-                })
-            })
-        }
-        return res
-          
-       
-    }
 
 
 
-    const [cartProducts, setCartProducts] = useState(getCartItemsInfo)
+
+
+
+
+    const [cartProducts, setCartProducts] = useState(cartItems)
+    console.log(cartProducts)
     const [totalProducts, setTotalProducts] = useState(0)
 
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
-        setCartProducts(getCartItemsInfo)
+        setCartProducts(cartItems)
         setTotalPrice(cartItems.reduce((total, item) => total + (Number(item.amount) * Number(item.price)), 0))
         setTotalProducts(cartItems.reduce((total, item) => total + Number(item.amount), 0))
     }, [cartItems])
@@ -59,7 +43,7 @@ const Cart = () => {
                             <span>Thành tiền:</span> <span>{Number(totalPrice).toLocaleString({ style: "currency", currency: "VND" })}<sup>đ</sup> </span>
                         </div>
                     </div>
-                    <div  className={classes.btn}>
+                    <div className={classes.btn}>
                         <Button size="block">
                             Đặt hàng
                         </Button>
@@ -68,14 +52,15 @@ const Cart = () => {
                                 Tiếp tục mua hàng
                             </Button>
                         </Link>
-                        
+
                     </div>
                 </div>
                 <div className={classes[`cart__list`]}>
                     {
-                        cartProducts.map((item, index) => (
-                            <CartItem item={item} key={index}/>
-                        ))
+                      cartProducts.map((item,index)=>{
+                        console.log(item)
+                        return (<CartItem item={item} key={index}></CartItem>)
+                      })
                     }
                 </div>
             </div>
@@ -84,4 +69,3 @@ const Cart = () => {
 }
 
 export default Cart
-

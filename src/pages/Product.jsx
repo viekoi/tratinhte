@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import {useLocation} from 'react-router-dom'
-import {db} from '../firebase-config'
-import {collection,getDocs,where} from 'firebase/firestore'
+import * as Realm from 'realm-web'
 
 
 import Helmet from '../components/Helmet'
@@ -15,22 +14,32 @@ import ProductView from '../components/ProductView'
 const Product = () => {
 
 
-  const productsCollectionRef = collection(db, "products");
+
   const [products,setProducts] = useState([])
   // const [product,setProduct] = useState({})
 
   const getAllProducts = async () => {
+    const app = new Realm.App({ id: "application-0-xxkdi" });
+    const credentials = Realm.Credentials.anonymous();
     try {
-      const data = await getDocs(productsCollectionRef);
-      const products = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      setProducts(products.sort((a, b) => {
-        const titleCompare = a.title.localeCompare(b.title)
-        const categorySlugCompare = a.categorySlug.localeCompare(b.categorySlug)
-        return titleCompare && categorySlugCompare
-      }))
-    } catch (er) {
-      console.error(er)
+      const user = await app.logIn(credentials);
+      const mongo = app.currentUser.mongoClient("mongodb-atlas");
+      const collection = mongo.db("myDB").collection("products");
+      const products = await collection.aggregate([{
+        $lookup:{
+          from:"toppings",
+          localField:"toppings",
+          foreignField:"slug",
+          as:"toppings"
+        }
+    }])
+      setProducts(products)
+    } catch(err) {
+      console.error("Failed to log in", err);
     }
+
+
+
   }
 
   

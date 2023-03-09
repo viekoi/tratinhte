@@ -1,5 +1,5 @@
 import classes from './CartItem.module.css'
-import React, { useState, useEffect, useContext } from 'react'
+import React, {useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -9,6 +9,7 @@ import CartContext from '../store/cart-context'
 const CartItem = props => {
 
     const item = props.item
+    console.log(item)
 
     const cartCtx = useContext(CartContext);
 

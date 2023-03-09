@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {db} from '../firebase-config'
-import {getDocs,collection,limit,query} from 'firebase/firestore'
+import * as Realm from 'realm-web'
 
 import Helmet from '../components/Helmet'
 import HeroSlider from '../components/HeroSlider'
@@ -8,25 +7,30 @@ import heroSliderData from '../fake-data/hero-slider'
 import Section,{SectionBody,SectionTitle} from '../components/Section'
 import ProductCard from '../components/ProductCard'
 
-import { async } from '@firebase/util'
+
 
 const Home = () => {
   const [products,setProducts] = useState([])
+  console.log(products)
 
-  const productsCollectionRef = collection(db,"products")
-  const getProducts = async()=>{
-    try{
-      const q = query(productsCollectionRef ,limit(4));
-      const data = await getDocs(q)
-      const products = (data.docs.map((doc)=>({...doc.data(),id:doc.id})))
+
+  const getRandomProducts = async()=>{
+    const app = new Realm.App({ id: "application-0-xxkdi" });
+    const credentials = Realm.Credentials.anonymous();
+    try {
+      const user = await app.logIn(credentials);
+      const mongo = app.currentUser.mongoClient("mongodb-atlas");
+      const collection = mongo.db("myDB").collection("products");
+      const products = await collection.find({},{limit:4})
       setProducts(products)
-    }catch(er){
-      console.error(er)
+    } catch(err) {
+      console.error("Failed to log in", err);
     }
+
   }
 
   useEffect(() => {
-    getProducts()
+    getRandomProducts()
   }, []);
 
   return (
