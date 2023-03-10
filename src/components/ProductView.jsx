@@ -116,9 +116,9 @@ const ProductView = props => {
         addToCartHandler()
         if(props.onClose){
             props.onClose()
-        }else{
-            alert("Thêm vào giỏ thành công!!!")
         }
+        alert("Thêm vào giỏ thành công!!!")
+        
             
     }
     return (

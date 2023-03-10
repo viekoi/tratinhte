@@ -16,7 +16,7 @@ const Product = () => {
 
 
   const [products,setProducts] = useState([])
-  // const [product,setProduct] = useState({})
+  
 
   const getAllProducts = async () => {
     const app = new Realm.App({ id: "application-0-xxkdi" });

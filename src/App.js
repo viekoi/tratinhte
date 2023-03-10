@@ -8,6 +8,7 @@ import Product from './pages/Product';
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
 import CartProvider from './store/CartProvider';
+import Order from './pages/Order';
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
           <Route path='/catalog/:slug' element={<Product></Product>}></Route>
           <Route path='/catalog' element={<Catalog></Catalog>}></Route>
           <Route path='/Cart' element={<Cart></Cart>}></Route>
+          <Route path='/order/' element={<Order></Order>}></Route>
         </Routes>
         <Footer></Footer>
       </CartProvider>

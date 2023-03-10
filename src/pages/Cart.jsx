@@ -44,9 +44,15 @@ const Cart = () => {
                         </div>
                     </div>
                     <div className={classes.btn}>
-                        <Button size="block">
-                            Đặt hàng
-                        </Button>
+                        {cartItems.length > 0 ? <Link to={`/order`}>
+                            <Button size="block">
+                                Đặt hàng
+                            </Button>
+                        </Link>:<Button size="block">
+                                Đặt hàng
+                            </Button>
+                        }
+                        
                         <Link to="/catalog">
                             <Button size="block">
                                 Tiếp tục mua hàng
