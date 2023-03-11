@@ -20,9 +20,7 @@ const Cart = () => {
 
 
     const [cartProducts, setCartProducts] = useState(cartItems)
-    console.log(cartProducts)
     const [totalProducts, setTotalProducts] = useState(0)
-
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
@@ -44,7 +42,7 @@ const Cart = () => {
                         </div>
                     </div>
                     <div className={classes.btn}>
-                        {cartItems.length > 0 ? <Link to={`/order`}>
+                        {cartItems.length > 0 ? <Link to={`/checkout`}>
                             <Button size="block">
                                 Đặt hàng
                             </Button>
@@ -64,8 +62,7 @@ const Cart = () => {
                 <div className={classes[`cart__list`]}>
                     {
                       cartProducts.map((item,index)=>{
-                        console.log(item)
-                        return (<CartItem item={item} key={index}></CartItem>)
+                        return (<CartItem control={true} item={item} key={index}></CartItem>)
                       })
                     }
                 </div>

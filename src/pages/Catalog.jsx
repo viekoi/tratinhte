@@ -23,16 +23,19 @@ const Catalog = () => {
       const user = await app.logIn(credentials);
       const mongo = app.currentUser.mongoClient("mongodb-atlas");
       const collection = mongo.db("myDB").collection("products");
-      const products = await collection.aggregate([{
-        $lookup:{
-          from:"toppings",
-          localField:"toppings",
-          foreignField:"slug",
-          as:"toppings"
+      const products = await collection.aggregate([
+        {
+          $lookup: {
+            from: "toppings",
+            localField: "toppings",
+            foreignField: "slug",
+            as: "toppings"
+          }
+        // }
         }
-    }])
+      ])
       setProductList(products)
-    } catch(err) {
+    } catch (err) {
       console.error("Failed to log in", err);
     }
 
@@ -45,7 +48,6 @@ const Catalog = () => {
   }
 
   const [productList, setProductList] = useState([])
-  console.log(productList)
 
 
   const [products, setProducts] = useState(productList)

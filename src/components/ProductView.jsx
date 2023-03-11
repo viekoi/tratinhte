@@ -13,6 +13,7 @@ const ProductView = props => {
 
 
     let product = props.product
+    
     const [size, setSize] = useState(product.size[0])
     const toppingList = product.toppings.map((topping)=>{
         return({name:topping.name,isChecked:false})
@@ -67,7 +68,7 @@ const ProductView = props => {
         }
         if(action.type==="SETTOPPING"){
             const existingToppingIndex = state.selectedToppings.findIndex(
-                (item) => item.id===action.item.id
+                (item) => item.slug===action.item.slug
             );
 
             if(existingToppingIndex===-1){
@@ -81,7 +82,7 @@ const ProductView = props => {
                 updatedItem.cartDescription = updatedCartDescription
                 return updatedItem
             }else{
-                const updatedSelectedToppings = state.selectedToppings.filter(topping => topping.id !== action.item.id);
+                const updatedSelectedToppings = state.selectedToppings.filter(topping => topping.slug!== action.item.slug);
                 const updatedPrice = state.price*1 - action.item.price*1
                 const updatedCartDescription = updatedSelectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,state.selectedSize)
                 const updatedItem ={...state}

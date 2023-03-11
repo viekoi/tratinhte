@@ -29,10 +29,9 @@
 .info {
     padding: 20px;
     margin-right: 30px;
-    margin-top: 30px;
     box-shadow: var(--box-shadow);
     position: sticky;
-    top: calc(var(--header-tablet-height) + 20px);
+    top: calc(var(--header-height) );
 
 }
 

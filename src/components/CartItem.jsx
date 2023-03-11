@@ -9,7 +9,7 @@ import CartContext from '../store/cart-context'
 const CartItem = props => {
 
     const item = props.item
-    console.log(item)
+
 
     const cartCtx = useContext(CartContext);
 
@@ -63,20 +63,24 @@ const CartItem = props => {
                 </div>
                 <div className={classes[`info__quantity`]}>
                     <div className={classes.quantity}>
-                        <div className={classes[`quantity__btn`]} onClick={() => { removefromCartHandler(1) }} >
+                        {props.control===true &&  <div className={classes[`quantity__btn`]} onClick={() => { removefromCartHandler(1) }} >
                             <i className="fa-solid fa-minus"></i>
-                        </div>
+                        </div>}
+                       
                         <div className={classes[`quantity__input`]}>
                             {item.amount}
                         </div>
-                        <div className={classes[`quantity__btn`]} onClick={addToCartHandler}>
+                        {props.control === true &&  <div className={classes[`quantity__btn`]} onClick={addToCartHandler}>
                             <i className="fa-solid fa-plus"></i>
-                        </div>
+                        </div>}
+                       
                     </div>
                 </div>
-                <div className={classes.del} onClick={() => { removefromCartHandler("all") }}>
+                {props.control === true && <div className={classes.del} onClick={() => { removefromCartHandler("all") }}>
                     <i className='fa-solid fa-trash' ></i>
-                </div>
+                </div>}
+                
+                
             </div>
 
         </div>
