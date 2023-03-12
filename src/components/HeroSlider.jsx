@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classes from './HeroSlider.module.css'
 import Button from '../components/Button'
+import * as Realm from 'realm-web'
 
 
 const HeroSlider = props => {
 
     const data = props.data
+
+
 
     const timeOut = props.timeOut ? props.timeOut : 3000
 
@@ -77,7 +80,12 @@ HeroSlider.propTypes = {
     timeOut: PropTypes.number
 }
 
-const HeroSliderItem = props => (
+const HeroSliderItem = (props) => {
+
+
+   
+    return(
+
     <div className={`${classes[`item`]} ${props.active ? 'active' : ''}`}>
         <div className={classes.info} >
             <div className={`${classes.title} color-${props.item.color}`}>
@@ -100,9 +108,10 @@ const HeroSliderItem = props => (
         </div>
         <div className={classes.image}>
             <div className={`${classes.shape} bg-${props.item.color}`}></div>
-            <img src={props.item.img} alt="" />
+            <img src={props.item.image} alt="" />
         </div>
     </div>
 )
+}
 
 export default HeroSlider

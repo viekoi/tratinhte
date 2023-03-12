@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState} from 'react'
 import classes from './CheckOut.module.css'
 import SearchbarDropdown from '../components/SearchbarDropdown'
 import CartItem from '../components/CartItem'
@@ -7,13 +7,29 @@ import CartContext from '../store/cart-context'
 const CheckOut = () => {
   const cartCtx = useContext(CartContext)
   const cartItems = cartCtx.items
+  const [provinceCode,setProvinceCode] = useState("")
 
-  const defaultOptions = [];
-  for (let i = 0; i < 10; i++) {
-    defaultOptions.push(`option ${i}`);
-    defaultOptions.push(`suggesstion ${i}`);
-    defaultOptions.push(`advice ${i}`);
+  const setProvinceCodeHandler=(str)=>{
+    setProvinceCode(str)
   }
+  
+  const fetchDistrict = async ()=>{
+    const response = await fetch("https://vn-public-apis.fpo.vn/districts/getByProvince?provinceCode=79&limit=-1"
+    )
+    return response.json();
+  }
+
+  const fetchWard = async ()=>{
+    const response = await fetch(`https://vn-public-apis.fpo.vn/wards/getByDistrict?districtCode=${provinceCode}&limit=-1`
+    )
+    return response.json();
+  }
+
+  
+
+ 
+
+  
   return (
     <div className={classes.checkout}>
       <form action="">
@@ -44,11 +60,14 @@ const CheckOut = () => {
             <div className={classes.flex}>
               <div className={classes.inputBox}>
                 <span>Quận / Huyện :</span>
-                <SearchbarDropdown options={defaultOptions} placeholder={`Quận/Huyện`}></SearchbarDropdown>
+                 <SearchbarDropdown  onSetProvinceCode={setProvinceCodeHandler} onLoad={fetchDistrict} placeholder={`Quận/Huyện`}></SearchbarDropdown>
+               
               </div>
               <div className={classes.inputBox}>
                 <span>Phường / Xã :</span>
-                <SearchbarDropdown options={defaultOptions} placeholder={`Phường/Xã`}></SearchbarDropdown>
+                {provinceCode!=="" ? <SearchbarDropdown  onLoad={fetchWard} placeholder={`Phường/Xã`}></SearchbarDropdown>:<input className={classes.disabled} type="text" placeholder="Phường/Xã" disabled={true} />}
+                
+                
               </div>
             </div>
 

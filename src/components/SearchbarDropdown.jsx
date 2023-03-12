@@ -1,23 +1,46 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './SearchbarDropdown.module.css'
 const SearchbarDropdown = (props) => {
-    const [options, setOptions] = useState(props.options)
-    console.log(options)
+    
+    const [options, setOptions] = useState([])
+
     const ulRef = useRef();
     const inputRef = useRef();
+    const optionsRef = useRef();
+
 
     const onInputChange = (event) => {
+        const filter = optionsRef.current.filter((option) => option[`name_with_type`].includes(event.target.value))
+        const result = optionsRef.current.filter((option) => option[`name_with_type`] === (event.target.value))
+        console.log(result)
         if (event.target.value === "") {
-            setOptions(props.options)
+            setOptions(optionsRef.current)
+            props.onSetProvinceCode && props.onSetProvinceCode(``)
         } else {
             setOptions(
-                options.filter((option) => option.includes(event.target.value))
-            );
+                filter
+            )
+            if(props.onSetProvinceCode){
+               props.onSetProvinceCode(result[0][`code`])
+            }
         }
 
     };
+    useEffect(() => {
+        props.onLoad()
+      .then(data => {
+        console.log(data)
+        setOptions(data.data.data)
+        optionsRef.current = data.data.data
+      })
+      .catch(error => {
+        console.error(error)
+      });
+  }, []);
+
 
     useEffect(() => {
+        
         inputRef.current.addEventListener('click', (event) => {
             event.stopPropagation();
             ulRef.current.style.display = 'block';
@@ -35,6 +58,7 @@ const SearchbarDropdown = (props) => {
                 placeholder={props.placeholder}
                 ref={inputRef}
                 onChange={onInputChange}
+                autoComplete="off"
             />
             <ul id={classes["results"]} className={classes["list-group"]} ref={ulRef}>
                 {options.map((option, index) => {
@@ -43,11 +67,12 @@ const SearchbarDropdown = (props) => {
                             type="button"
                             key={index}
                             onClick={(e) => {
-                                inputRef.current.value = option;
+                                inputRef.current.value = option[`name_with_type`];
+                                props.onSetProvinceCode && props.onSetProvinceCode(option[`code`])
                             }}
                             className={classes["list-group-item"]}
                         >
-                            {option}
+                            {option[`name_with_type`]}
                         </button>
                     );
                 })}

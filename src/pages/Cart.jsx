@@ -59,6 +59,7 @@ const Cart = () => {
 
                     </div>
                 </div>
+
                 <div className={classes[`cart__list`]}>
                     {
                       cartProducts.map((item,index)=>{
