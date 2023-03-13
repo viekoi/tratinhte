@@ -94,7 +94,6 @@ const CartProvider = (props) => {
 
 
     const removeItemFromCartHandler = (item) => {
-        console.log(item)
         dispatchCartAction({ type: 'REMOVE', item: item});
     };
     const cartContext = {

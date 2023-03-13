@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classes from './HeroSlider.module.css'
 import Button from '../components/Button'
-import * as Realm from 'realm-web'
+
 
 
 const HeroSlider = props => {

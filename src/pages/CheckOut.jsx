@@ -1,35 +1,55 @@
-import React, { useContext, useState} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import classes from './CheckOut.module.css'
-import SearchbarDropdown from '../components/SearchbarDropdown'
 import CartItem from '../components/CartItem'
 import CartContext from '../store/cart-context'
 
 const CheckOut = () => {
+  const [ward, setWard] = useState();
+  const [district, setDistrict] = useState();
+  const[data,setData] = useState([])
   const cartCtx = useContext(CartContext)
   const cartItems = cartCtx.items
-  const [provinceCode,setProvinceCode] = useState("")
 
-  const setProvinceCodeHandler=(str)=>{
-    setProvinceCode(str)
+
+
+
+
+
+
+
+
+  const fetchData = async () => {
+    const response = await fetch("https://provinces.open-api.vn/api/?depth=3")
+    const data = await response.json();
+    const result = data.find((data)=>{
+      return(data.code===79)
+    })
+    setData(result)
+    
   }
-  
-  const fetchDistrict = async ()=>{
-    const response = await fetch("https://vn-public-apis.fpo.vn/districts/getByProvince?provinceCode=79&limit=-1"
-    )
-    return response.json();
-  }
 
-  const fetchWard = async ()=>{
-    const response = await fetch(`https://vn-public-apis.fpo.vn/wards/getByDistrict?districtCode=${provinceCode}&limit=-1`
-    )
-    return response.json();
-  }
+  const selectDistrict = (e) => {
+    const selectedDisctrict = data.districts.find(
+      (entry) => entry.name === e.target.value
+    );
+    setWard(undefined);
+    setDistrict(selectedDisctrict);
+  };
 
-  
+  const selectWard = (e) => {
+    setWard(e.target.value);
+  };
 
- 
+
 
   
+
+  useEffect(() => {
+   fetchData()
+  }, []);
+
+
+
   return (
     <div className={classes.checkout}>
       <form action="">
@@ -60,14 +80,41 @@ const CheckOut = () => {
             <div className={classes.flex}>
               <div className={classes.inputBox}>
                 <span>Quận / Huyện :</span>
-                 <SearchbarDropdown  onSetProvinceCode={setProvinceCodeHandler} onLoad={fetchDistrict} placeholder={`Quận/Huyện`}></SearchbarDropdown>
-               
+                <div className="">
+                  {!!data.districts && <select onChange={selectDistrict} defaultValue={""}>
+                    <option value="" disabled hidden>chọn</option>
+                    {data.districts.map((entry, index) => {
+                      return (
+                        <option key={index} value={entry.name}>
+                          {entry.name}
+                        </option>
+                      );
+                    })}
+                  </select> }
+                  
+                </div>
+
               </div>
               <div className={classes.inputBox}>
                 <span>Phường / Xã :</span>
-                {provinceCode!=="" ? <SearchbarDropdown  onLoad={fetchWard} placeholder={`Phường/Xã`}></SearchbarDropdown>:<input className={classes.disabled} type="text" placeholder="Phường/Xã" disabled={true} />}
-                
-                
+                <div className="">
+                  {!!district ?
+                    <select onChange={selectWard}>
+                      
+                      {district.wards.map((ward, index) => {
+                         
+                        return (
+                          <option   value={ward.name} key={index}>
+                            {ward.name}
+                          </option>
+                        );
+                      })}
+                    </select>:<select disabled defaultValue={""}>
+                      <option value="">chọn</option>
+                    </select>
+                  }
+
+                </div>
               </div>
             </div>
 
@@ -86,7 +133,7 @@ const CheckOut = () => {
               <div className={classes[`cart__list`]}>
 
                 {
-                  
+
                   cartItems.map((item, index) => {
                     return (<CartItem item={item} key={index}></CartItem>)
                   })
@@ -110,3 +157,6 @@ const CheckOut = () => {
 }
 
 export default CheckOut
+
+
+

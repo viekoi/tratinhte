@@ -46,7 +46,7 @@
   display: block;
 }
 
-.checkout form .row .col .inputBox input {
+.checkout form .row .col .inputBox input ,.checkout form .row .col .inputBox select {
   width: 100%;
   border:1px solid #ccc;
   padding:10px 15px;
