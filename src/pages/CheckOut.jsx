@@ -8,18 +8,6 @@ import Button from '../../src/components/Button'
 
 
 const CheckOut = () => {
-<<<<<<< HEAD
-  const [ward, setWard] = useState(undefined);
-  const [district, setDistrict] = useState(undefined);
-  const[data,setData] = useState([])
-  const cartCtx = useContext(CartContext)
-  const cartItems = cartCtx.items
-
-  const resetCart = () => {
-    cartCtx.reset();
-  };
-
-=======
   const [ward, setWard] = useState();
   const [district, setDistrict] = useState();
   const [data, setData] = useState([])
@@ -27,8 +15,11 @@ const CheckOut = () => {
   const cartCtx = useContext(CartContext)
   const cartItems = cartCtx.items
 
-  console.log(submitData)
->>>>>>> 622bf28b75a247c54a7cdb43e7945caebfca7ebe
+  const resetCart = ()=>{
+    cartCtx.reset()
+  }
+
+
 
 
 
@@ -39,6 +30,8 @@ const CheckOut = () => {
 
     setSubmitData({ ...submitData, [id]: value });
   };
+
+
 
 
 
@@ -73,7 +66,6 @@ const CheckOut = () => {
     setSubmitData({ ...submitData, [id]: value });
   };
 
-<<<<<<< HEAD
 
   const isNotEmpty = (value) => value.trim() !== '';
   const isEmail = (value) => value.includes('@');
@@ -150,14 +142,6 @@ const CheckOut = () => {
     resetCart()
     
   };
-=======
-  
-const onSubmitHandler=(e)=>{
-  e.preventDefault()
-}
-
-
->>>>>>> 622bf28b75a247c54a7cdb43e7945caebfca7ebe
 
   useEffect(() => {
     fetchData()
@@ -167,12 +151,8 @@ const onSubmitHandler=(e)=>{
 
   return (
     <div className={classes.checkout}>
-<<<<<<< HEAD
       {cartItems.length > 0 ? 
       <form onSubmit={submitHandler}>
-=======
-      <form onSubmit={onSubmitHandler}>
->>>>>>> 622bf28b75a247c54a7cdb43e7945caebfca7ebe
 
       <div className={classes.row}>
 
@@ -206,7 +186,6 @@ const onSubmitHandler=(e)=>{
 
           <div className={classes.flex}>
             <div className={classes.inputBox}>
-<<<<<<< HEAD
               <span>Quận / Huyện :</span>
               <div className="">
                 {!!data.districts && <select onChange={selectDistrict} defaultValue={""}>
@@ -232,107 +211,15 @@ const onSubmitHandler=(e)=>{
                     {district.wards.sort((a, b) =>
               a.name.localeCompare(b.name)).map((ward, index) => {
                        
-=======
-              <span>Họ Tên :</span>
-              <input id="fullname" type="text" placeholder="Nguyễn Văn A"  onChange={handleInput}/>
-            </div>
-            <div className={classes.inputBox}>
-              <span>email :</span>
-              <input id="email" type="email" placeholder="example@example.com" onChange={handleInput}/>
-            </div>
-            <div className={classes.inputBox}>
-              <span>Địa chỉ giao hàng :</span>
-              <input id="address" type="text" placeholder="đại chỉ" onChange={handleInput}/>
-            </div>
-            <div className={classes.inputBox}>
-              <span>Thành Phố / Tỉnh:</span>
-              <input id="province" className={classes.disabled} type="text" placeholder="mumbai" value={`TP Hồ Chí Minh`} disabled={true} />
-            </div>
-
-            <div className={classes.flex}>
-              <div className={classes.inputBox}>
-                <span>Quận / Huyện :</span>
-                <div className="">
-                  {!!data.districts && <select id="district" onChange={selectDistrict} defaultValue={""}>
-                    <option value="" disabled hidden>chọn</option>
-                    {data.districts.sort(function (a, b) {
-                      if (a.name < b.name) {
-                        return -1;
-                      }
-                      if (a.name > b.name) {
-                        return 1;
-                      }
-                      return 0;
-                    }).map((entry, index) => {
->>>>>>> 622bf28b75a247c54a7cdb43e7945caebfca7ebe
                       return (
                         <option   value={ward.name} key={index}>
                           {ward.name}
                         </option>
                       );
                     })}
-<<<<<<< HEAD
                   </select>:<select disabled defaultValue={""}>
                     <option value="">chọn</option>
                   </select>
-=======
-                  </select>}
-
-                </div>
-
-              </div>
-              <div className={classes.inputBox}>
-                <span>Phường / Xã :</span>
-                <div className="">
-                  {!!district ?
-                    <select id="ward" onChange={selectWard} defaultValue={""}>
-                      <option value="" disabled hidden>chọn</option>
-                      {district.wards.sort(function (a, b) {
-                        if (a.name < b.name) {
-                          return -1;
-                        }
-                        if (a.name > b.name) {
-                          return 1;
-                        }
-                        return 0;
-                      }).map((ward, index) => {
-
-                        return (
-                          <option value={ward.name} key={index}>
-                            {ward.name}
-                          </option>
-                        );
-                      })}
-                    </select> : <select disabled defaultValue={""}>
-                      <option value="">chọn</option>
-                    </select>
-                  }
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div className={classes.col}>
-
-            <h3 className={classes.title}>payment</h3>
-
-            <div className={classes.inputBox}>
-              <span>Phương thức thanh toán:</span>
-              <input className={classes.disabled} type="text" value={`Cash On Delivery(thanh toán khi nhận hàng)`} disabled={true} />
-            </div>
-            <div className={classes.inputBox}>
-              <span>Giỏ Hàng: {cartItems.reduce((total, item) => total + Number(item.amount), 0)} sản phẩm</span>
-              <div className={classes[`cart__list`]}>
-
-                {
-
-                  cartItems.map((item, index) => {
-                    return (<CartItem item={item} key={index}></CartItem>)
-                  })
-
->>>>>>> 622bf28b75a247c54a7cdb43e7945caebfca7ebe
                 }
 
               </div>
