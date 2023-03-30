@@ -30,7 +30,7 @@
     display: flex !important;
     flex: 1;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
 
 }
 
@@ -45,6 +45,10 @@
     font-weight: 600;
     flex: 0 0 20%;
     max-width: 20%;
+}
+
+.nav .lv-0:hover {
+    background-color: rgba(85, 107, 47,0.3);
 }
 
 .nav .lv-0 a {
@@ -64,7 +68,7 @@
     flex: 0 0 10%;
     max-width: 10%;
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: center;
     align-items: center;
     
 }

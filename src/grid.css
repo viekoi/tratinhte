@@ -5,10 +5,8 @@
 }
 
 .grid.wide {
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
-    height: 100%;
-
 }
 
 .row {
@@ -16,8 +14,6 @@
     flex-wrap: wrap;
     margin-left: -4px;
     margin-right: -4px;
-    height: 100%;
-    width: 100%;
 }
 
 .row.no-gutters {
@@ -280,7 +276,7 @@
 }
 
 /* PC medium resolution > */
-@media (min-width: 1240px) {
+@media (min-width: 1113px) {
     .row {
         margin-left: -12px;
         margin-right: -12px;
@@ -434,14 +430,14 @@
 /* Tablet - PC low resolution */
 @media (min-width: 740px) and (max-width: 1023px) {
     .wide {
-        width: 740px;
+        width: 644px;
     }
 }
 
 /* > PC low resolution */
 @media (min-width: 1024px) and (max-width: 1239px) {
     .wide {
-        width: 1024px;
+        width: 984px;
     }
 
     .wide .row {

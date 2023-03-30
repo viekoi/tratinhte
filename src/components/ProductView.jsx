@@ -196,7 +196,7 @@ const ProductView = props => {
               
                 <div className={classes[`info-item`]}>
                     <div className={classes[`info-item-content`]}>
-                        <Link to='/Cart'>
+                        <Link to='/cart'>
                             <Button
                                 size="l"
                                 backgroundColor={product.color}

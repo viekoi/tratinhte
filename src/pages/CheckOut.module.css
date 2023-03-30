@@ -77,17 +77,29 @@
   width: 100%;
   padding:12px;
   font-size: 17px;
-  background: linear-gradient(79deg, rgba(23,46,11,1) 0%, rgba(85,107,47,1) 62%);
-  color:#fff;
   margin-top: 5px;
   cursor: pointer;
 }
 
-.checkout form .submit-btn:hover{
+.checkout form .submit-btn.active{
+  background: linear-gradient(79deg, rgba(23,46,11,1) 0%, rgba(85,107,47,1) 62%);
+  color:#fff;
+}
+
+.checkout form .submit-btn.active:hover{
+  color:#fff;
   background: linear-gradient(306deg, rgba(5,0,8,1) 0%, rgba(214,12,12,1) 50%);
 }
 
-.disabled{
+.checkout form .submit-btn.inactive,
+.checkout form .submit-btnd.inactive:hover,
+.checkout form .submit-btn.inactive:active{
+  color: #292929 !important;
+  border-color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+.inactive{
 
   background-color: #ccc;
 }
@@ -107,8 +119,35 @@
   color: red;
 }
 
+.invalid input{
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.error-text {
+  color: #b40e0e;
+}
+
+.end-form {
+  text-align: center;
+}
+
+.end-form h1{
+  color: #fff;
+  font-size: 3rem;
+}
+
+.end-form i{
+  font-size: 5rem;
+  margin: 1rem 0;
+}
+
+
+
+
 @media (max-width: 1023px) {
   .checkout{
       margin-top: var(--header-tablet-height);
   }
 }
+

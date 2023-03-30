@@ -44,6 +44,10 @@ img{
     background-color: var(--desert) !important;
 }
 
+.bg-white{
+    background-color: var(--txt-white) !important;
+}
+
 
 
 

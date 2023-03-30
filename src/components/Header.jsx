@@ -13,19 +13,19 @@ import CartContext from '../store/cart-context'
 
 const mainNav = [
   {
-    display: "Trang chủ",
+    display: "Trang Chủ",
     path: "/"
   },
   {
-    display: "Sản phẩm",
+    display: "Sản Phẩm",
     path: "/catalog"
   },
   {
-    display: "không gian quán",
-    path: "/store"
+    display: "Tin Tức",
+    path: "/news"
   },
   {
-    display: "Về Chúng tôi",
+    display: "Về Chúng Tôi",
     path: "/aboutUs"
   },
 
@@ -85,8 +85,8 @@ const Header = () => {
           <div className={classes.mobile}>
             <div className={classes[`mobile-nav-button`]}>
               <div className={classes[`mobile-cart`]}>
-                <Link to='/Cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
-                <div className={classes[`total-incart`]}> <Link to='/Cart'>{totalProducts}</Link> </div>
+                <Link to='/cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
+                <div className={classes[`total-incart`]}> <Link to='/cart'>{totalProducts}</Link> </div>
               </div>
               <a onClick={mobileNavToggle} type="button"><span><i className="fa-solid fa-bars"></i></span></a>
             </div>
@@ -96,7 +96,6 @@ const Header = () => {
               mainNav.map((item, index) => (
                 <div
                   key={index}
-                  // className={`header__menu__item header__menu__left__item ${index === activeNav ? 'active' : ''}`}
                   className={`${classes[`lv-0`]} ${index === activeNav ? 'active' : ''}`}
                   onClick={navToggle}
                 >
@@ -107,8 +106,8 @@ const Header = () => {
               ))
             }
             <div className={`${classes[`nav-button`]}`} >
-                <Link type="button" to='/Cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
-                <div className={classes[`total-incart`]}> <Link to='/Cart'>{totalProducts}</Link> </div>
+                <Link type="button" to='/cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
+                <div className={classes[`total-incart`]}> <Link to='/cart'>{totalProducts}</Link> </div>
             </div>
 
           </div>
@@ -119,7 +118,6 @@ const Header = () => {
           {mainNav.map((item, index) => (
             <div
               key={index}
-              // className={`header__menu__item header__menu__left__item ${index === activeNav ? 'active' : ''}`}
               className={`${classes[`lv-0`]} ${index === activeNav ? 'active' : ''}`}
               onClick={navToggle}
             >

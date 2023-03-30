@@ -1,0 +1,42 @@
+.new{
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.new:hover{
+   animation: popup 0.1s ease-in;
+   animation-fill-mode: forwards;
+    
+}
+
+@keyframes popup{
+    0%{transform: translateY(0);}
+    100%{transform: translateY(-5px);}
+}
+
+.tend h3{
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.tend h3>a{
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    height: 44px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.date{
+    font-size: 13px;
+    line-height: 21px;
+    color: #888888;
+}
+
+/* .date span{
+    padding-left: 20px;
+    position: relative;
+} */

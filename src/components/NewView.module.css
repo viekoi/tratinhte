@@ -1,0 +1,47 @@
+.newView{
+    margin-top: var(--header-height);
+    padding: 3rem 1rem;   
+}
+
+.newTitle{
+    margin-bottom: 15px;
+}
+
+.newTitle h1{
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: normal;
+    color: #53382c;
+    text-transform: uppercase;
+    padding-right: 20%;
+    display: block;
+    font-weight: normal !important;
+}
+
+.newDate{
+    font-size: 13px;
+    line-height: 21px;
+    color: #888888;
+    margin-bottom: 15px
+}
+
+.newDSC{
+    margin-bottom: 25px;
+    
+}
+
+.newDSC p {
+    font-size: 14px !important;
+    line-height: 24px !important;
+    font-family: 'Open Sans', sans-serif !important
+}
+
+.new-img{
+    text-align: center;
+}
+
+.new-img img{
+    height: 334px;
+    width: 760px;
+}
+
