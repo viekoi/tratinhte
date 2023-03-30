@@ -12,7 +12,7 @@ const Footer = () => {
             </div>
             <div className={classes.content}>
               <p>
-                <a href="https://www.facebook.com/heichatratinhte" target="_blank"><span><i className="fa-brands fa-facebook"></i></span> Heicha_Trà Tinh Tế</a>
+                <a href="https://www.facebook.com/heichatratinhte" target="_blank" rel="noreferrer"><span><i className="fa-brands fa-facebook"></i></span> Heicha_Trà Tinh Tế</a>
               </p>
               {/* <p>
                 <a href="https://www.facebook.com/heichatratinhte"><span><i className="fa-brands fa-facebook"></i></span>  facebook.com/heichatratinhte</a>

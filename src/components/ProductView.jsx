@@ -9,11 +9,11 @@ import Button from './Button'
 import CartContext from '../store/cart-context'
 
 const ProductView = props => {
-
+ 
 
 
     let product = props.product
-    
+
     const [size, setSize] = useState(product.size[0])
     const toppingList = product.toppings.map((topping)=>{
         return({name:topping.name,isChecked:false})
@@ -39,9 +39,7 @@ const ProductView = props => {
         setSize(product.size[0])
     },[product] );
 
-    const findKey=function getKeyByValue(object, value) {
-        return Object.keys(object).find(key => object[key] === value);
-      }
+
 
 
     const productDefaultState={

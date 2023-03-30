@@ -29,7 +29,7 @@ const ProductCard = props => {
     }, []);
     return (
         <div className={`${classes[`product-card`]} col l-${props.lcol} m-${props.mcol} c-${props.ccol}`}>
-            <Link to={`/catalog/${props.item.slug}`} state={{props:props.item}}>
+            <Link to={`/catalog/${props.item.slug}`} >
                 <div className={classes.image}>
                     <img src={props.item.image} alt="" />
                 </div>

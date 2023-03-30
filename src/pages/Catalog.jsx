@@ -32,7 +32,9 @@ const Catalog = () => {
             as: "toppings"
           }
         // }
-        }
+        },
+        { $sort: {categorySlug:-1
+        } }
       ])
       setProductList(products)
     } catch (err) {

@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import {useLocation} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import * as Realm from 'realm-web'
 
 
@@ -11,11 +11,15 @@ import ProductView from '../components/ProductView'
 
 
 
+
 const Product = () => {
 
 
+  let { slug } = useParams();
 
   const [products,setProducts] = useState([])
+
+  
   
 
   const getAllProducts = async () => {
@@ -42,23 +46,28 @@ const Product = () => {
 
   }
 
-  
+ 
+    
 
 
 
-  let {state}= useLocation();
-  const product = state.props
-  const relatedProducts  = products.filter(e =>{return((e.categorySlug===state.props.categorySlug) && (e.slug!==state.props.slug))})
+
+
+  const product = products.find((product)=>{
+    return(product.slug === slug)
+  })
+
+  const relatedProducts =  products.filter(e =>{return((e.categorySlug===product.categorySlug) && (e.slug!==product.slug))})
 
   useEffect(() => {
     getAllProducts()
+
   }, []);
 
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  },[product])
+ 
   return (
-    <Helmet title={product.title}>
+    <>
+    {product? <Helmet title={product.title}>
       
       <Section>
         <SectionBody>
@@ -91,7 +100,9 @@ const Product = () => {
         </SectionBody>
       </Section>
 
-    </Helmet>
+    </Helmet> : <></>}
+    </>
+   
   )
 }
 

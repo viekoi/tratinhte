@@ -88,7 +88,7 @@ const Header = () => {
                 <Link to='/cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
                 <div className={classes[`total-incart`]}> <Link to='/cart'>{totalProducts}</Link> </div>
               </div>
-              <a onClick={mobileNavToggle} type="button"><span><i className="fa-solid fa-bars"></i></span></a>
+              <a onClick={mobileNavToggle} type="button" ><span><i className="fa-solid fa-bars"></i></span></a>
             </div>
           </div>
           <div className={`${classes[`nav`]} col l-9 m-9 `} ref={navRef}>
