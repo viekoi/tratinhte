@@ -1,0 +1,14 @@
+.loading{
+    margin-top: var(--header-height);
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1023px){
+    .loading{
+        margin-top: var(--header-tablet-height);
+    } 
+}

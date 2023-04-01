@@ -79,7 +79,7 @@ const Header = () => {
         <div className="row">
           <div className={`${classes.logo} col l-3 m-3 `}>
             <Link to='/'>
-              <img src="https://firebasestorage.googleapis.com/v0/b/heichatest.appspot.com/o/logo.jpg?alt=media&token=5bf740d3-2e40-4187-b8ea-eee26d3556ac" alt="" />
+              <img src="/logo.jpg" alt="" />
             </Link>
           </div>
           <div className={classes.mobile}>
@@ -106,8 +106,8 @@ const Header = () => {
               ))
             }
             <div className={`${classes[`nav-button`]}`} >
-                <Link type="button" to='/cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
-                <div className={classes[`total-incart`]}> <Link to='/cart'>{totalProducts}</Link> </div>
+              <Link type="button" to='/cart'><span><i className="fa-solid fa-cart-shopping"></i></span></Link>
+              <div className={classes[`total-incart`]}> <Link to='/cart'>{totalProducts}</Link> </div>
             </div>
 
           </div>

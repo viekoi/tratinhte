@@ -46,11 +46,11 @@ const Cart = () => {
                             <Button size="block">
                                 Đặt hàng
                             </Button>
-                        </Link>:<Button size="block">
-                                Đặt hàng
-                            </Button>
+                        </Link> : <Button size="block">
+                            Đặt hàng
+                        </Button>
                         }
-                        
+
                         <Link to="/catalog">
                             <Button size="block">
                                 Tiếp tục mua hàng
@@ -62,9 +62,9 @@ const Cart = () => {
 
                 <div className={classes[`cart__list`]}>
                     {
-                      cartProducts.map((item,index)=>{
-                        return (<CartItem control={true} item={item} key={index}></CartItem>)
-                      })
+                        cartProducts.map((item, index) => {
+                            return (<CartItem control={true} item={item} key={index}></CartItem>)
+                        })
                     }
                 </div>
             </div>

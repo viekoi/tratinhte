@@ -1,5 +1,5 @@
 import classes from './CartItem.module.css'
-import React, {useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -63,24 +63,24 @@ const CartItem = props => {
                 </div>
                 <div className={classes[`info__quantity`]}>
                     <div className={classes.quantity}>
-                        {props.control===true &&  <div className={classes[`quantity__btn`]} onClick={() => { removefromCartHandler(1) }} >
+                        {props.control === true && <div className={classes[`quantity__btn`]} onClick={() => { removefromCartHandler(1) }} >
                             <i className="fa-solid fa-minus"></i>
                         </div>}
-                       
+
                         <div className={classes[`quantity__input`]}>
                             {item.amount}
                         </div>
-                        {props.control === true &&  <div className={classes[`quantity__btn`]} onClick={addToCartHandler}>
+                        {props.control === true && <div className={classes[`quantity__btn`]} onClick={addToCartHandler}>
                             <i className="fa-solid fa-plus"></i>
                         </div>}
-                       
+
                     </div>
                 </div>
                 {props.control === true && <div className={classes.del} onClick={() => { removefromCartHandler("all") }}>
                     <i className='fa-solid fa-trash' ></i>
                 </div>}
-                
-                
+
+
             </div>
 
         </div>

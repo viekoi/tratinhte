@@ -5,7 +5,7 @@ const Footer = () => {
     <div className={classes.footer}>
       <div className="grid wide">
         <div className="row">
-          
+
           <div className="col l-6 ">
             <div className={classes.title}>
               Social Media
@@ -14,9 +14,6 @@ const Footer = () => {
               <p>
                 <a href="https://www.facebook.com/heichatratinhte" target="_blank" rel="noreferrer"><span><i className="fa-brands fa-facebook"></i></span> Heicha_Trà Tinh Tế</a>
               </p>
-              {/* <p>
-                <a href="https://www.facebook.com/heichatratinhte"><span><i className="fa-brands fa-facebook"></i></span>  facebook.com/heichatratinhte</a>
-              </p> */}
             </div>
           </div>
           <div className="col l-6 ">
@@ -30,7 +27,7 @@ const Footer = () => {
               <p>
                 Địa chỉ: <span>311 Mã Lò, Phường Bình Trị Đông A, Quận Bình Tân ,TP Hồ Chí Minh, Việt Nam</span>
               </p>
-             
+
             </div>
           </div>
         </div>

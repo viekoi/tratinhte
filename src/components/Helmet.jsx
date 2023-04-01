@@ -6,7 +6,7 @@ const Helmet = props => {
     document.title = 'Trà Tinh Tế - ' + props.title
 
     React.useEffect(() => {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
     }, [])
 
     return (

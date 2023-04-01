@@ -16,8 +16,8 @@ const ProductViewModal = (props) => {
                 <ProductView product={product} onClose={props.onClose} />
                 <div className={classes.close}>
                     <Button
-                        size="sm" 
-                        onclick={props.onClose}   
+                        size="sm"
+                        onclick={props.onClose}
                     >
                         đóng
                     </Button>

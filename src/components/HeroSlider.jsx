@@ -45,15 +45,15 @@ const HeroSlider = props => {
 
             <div className={classes[`hero-slider`]}>
                 {
-                   
+
                     data.map((item, index) => (
-                        
-                        <HeroSliderItem key={index} item={item} active={index === activeSlide}/>
+
+                        <HeroSliderItem key={index} item={item} active={index === activeSlide} />
                     ))
                 }
                 {
                     props.control ? (
-                        <div className= {classes[`control`]}>
+                        <div className={classes[`control`]}>
                             <div className={classes[`control-item`]} onClick={prevSlide}>
                                 <i className="fa-solid fa-angle-left"></i>
                             </div>
@@ -83,35 +83,35 @@ HeroSlider.propTypes = {
 const HeroSliderItem = (props) => {
 
 
-   
-    return(
 
-    <div className={`${classes[`item`]} ${props.active ? 'active' : ''}`}>
-        <div className={classes.info} >
-            <div className={`${classes.title} color-${props.item.color}`}>
-                <span>{props.item.title}</span>
+    return (
+
+        <div className={`${classes[`item`]} ${props.active ? 'active' : ''}`}>
+            <div className={classes.info} >
+                <div className={`${classes.title} color-${props.item.color}`}>
+                    <span>{props.item.title}</span>
+                </div>
+                <div className={classes.description}>
+                    <span>{props.item.description}</span>
+                </div>
+                <div className={classes.btn}>
+                    <Link to={`/catalog/${props.item.slug}`} state={{ item: props.item }}>
+                        <Button
+                            backgroundColor={props.item.color}
+                            icon="fa-solid fa-arrow-pointer"
+                            animate={true}
+                        >
+                            xem chi tiết
+                        </Button>
+                    </Link>
+                </div>
             </div>
-            <div className={classes.description}>
-                <span>{props.item.description}</span>
-            </div>
-            <div className={classes.btn}>
-                <Link to={`/catalog/${props.item.slug}`} state={{props:props.item}}>
-                    <Button
-                        backgroundColor={props.item.color}
-                        icon="fa-solid fa-arrow-pointer"
-                        animate={true}
-                    >
-                        xem chi tiết
-                    </Button>
-                </Link>
+            <div className={classes.image}>
+                <div className={`${classes.shape} bg-${props.item.color}`}></div>
+                <img src={props.item.image} alt="" />
             </div>
         </div>
-        <div className={classes.image}>
-            <div className={`${classes.shape} bg-${props.item.color}`}></div>
-            <img src={props.item.image} alt="" />
-        </div>
-    </div>
-)
+    )
 }
 
 export default HeroSlider

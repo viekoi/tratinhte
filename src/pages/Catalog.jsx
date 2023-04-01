@@ -6,17 +6,17 @@ import Helmet from '../components/Helmet'
 import classes from './Catalog.module.css'
 import ProductCard from '../components/ProductCard'
 import CheckBox from '../components/CheckBox'
-
+import Button from '../components/Button'
+import Loading from '../components/Loading'
 
 
 import category from '../fake-data/category'
-import Button from '../components/Button'
 const Catalog = () => {
 
+  // const [isLoading, setIsLoading] = useState(true);
 
 
-
-  const getAllProducts = async () => {
+  const fetchProducts = async () => {
     const app = new Realm.App({ id: "application-0-xxkdi" });
     const credentials = Realm.Credentials.anonymous();
     try {
@@ -31,12 +31,16 @@ const Catalog = () => {
             foreignField: "slug",
             as: "toppings"
           }
-        // }
+          // }
         },
-        { $sort: {categorySlug:-1
-        } }
+        {
+          $sort: {
+            categorySlug: -1
+          }
+        }
       ])
       setProductList(products)
+      //  setIsLoading(false); 
     } catch (err) {
       console.error("Failed to log in", err);
     }
@@ -96,7 +100,7 @@ const Catalog = () => {
 
 
   useEffect(() => {
-    getAllProducts()
+    fetchProducts()
     window.scrollTo(0, 0)
   }, []);
 
@@ -119,72 +123,79 @@ const Catalog = () => {
     filterContainerModalRef.current.classList.toggle('active')
 
   }
-  return (
-    <div className="grid wide">
-      <Helmet title='Sản Phẩm'>
-        <div className={classes.catalog}>
-          <div className={classes.toggle}>
-            <Button size="sm" onclick={() => showHideFilter()}>bộ lọc</Button>
-          </div>
-          <div className={classes[`filter-container`]} ref={filterContainerModalRef} onClick={showHideFilter}>
-            <div className={classes.filter} ref={filterRef} onClick={stopPropagationHandler}>
-              <div className={classes.close} onClick={showHideFilter}>
-                <i className="fa-solid fa-arrow-left"></i>
-              </div>
-              <div className={classes.widget}>
-                <div className={classes.title}>
-                  danh mục sản phẩm
+
+  if (productList.length === 0) {
+    return (<Loading></Loading>)
+  } else {
+    return (
+      <div className="grid wide">
+        <Helmet title='Sản Phẩm'>
+          <div className={classes.catalog}>
+            <div className={classes.toggle}>
+              <Button size="sm" onclick={() => showHideFilter()}>bộ lọc</Button>
+            </div>
+            <div className={classes[`filter-container`]} ref={filterContainerModalRef} onClick={showHideFilter}>
+              <div className={classes.filter} ref={filterRef} onClick={stopPropagationHandler}>
+                <div className={classes.close} onClick={showHideFilter}>
+                  <i className="fa-solid fa-arrow-left"></i>
                 </div>
-                <div className={classes[`widget-content`]}>
+                <div className={classes.widget}>
+                  <div className={classes.title}>
+                    danh mục sản phẩm
+                  </div>
+                  <div className={classes[`widget-content`]}>
+                    {
+                      category.map((item, index) => {
+                        return (<div className={classes.item} key={index}>
+                          <CheckBox
+                            label={item.display}
+                            onChange={(input) => filterSelect("CATEGORY", input.checked, item)}
+                            checked={filter.category.includes(item.categorySlug)}
+                          ></CheckBox>
+                        </div>)
+                      })
+                    }
+                  </div>
+                </div>
+                <div className={classes.widget}>
+                  <div className={classes[`widget-content`]}>
+                    <Button
+                      onclick={clearFilter}
+                      size="sm"
+                    >Xóa bộ lọc</Button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div className={classes.content}>
+              <div className="grid">
+                <div className="row">
                   {
-                    category.map((item, index) => {
-                      return (<div className={classes.item} key={index}>
-                        <CheckBox
-                          label={item.display}
-                          onChange={(input) => filterSelect("CATEGORY", input.checked, item)}
-                          checked={filter.category.includes(item.categorySlug)}
-                        ></CheckBox>
-                      </div>)
+                    products.map((item, index) => {
+                      return (
+                        <ProductCard
+                          key={index}
+                          item={item}
+                          lcol={4}
+                          mcol={6}
+                          ccol={12}
+                        ></ProductCard>
+                      )
                     })
                   }
                 </div>
               </div>
-              <div className={classes.widget}>
-                <div className={classes[`widget-content`]}>
-                  <Button
-                    onclick={clearFilter}
-                    size="sm"
-                  >Xóa bộ lọc</Button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-          <div className={classes.content}>
-            <div className="grid">
-              <div className="row">
-                {
-                  products.map((item, index) => {
-                    return (
-                      <ProductCard
-                        key={index}
-                        item={item}
-                        lcol={4}
-                        mcol={6}
-                        ccol={12}
-                      ></ProductCard>
-                    )
-                  })
-                }
-              </div>
             </div>
           </div>
-        </div>
 
-      </Helmet>
-    </div>
-  )
+        </Helmet>
+      </div>
+    )
+  }
 }
+
+
 
 export default Catalog

@@ -70,6 +70,7 @@
     width: 80%;
 }
 
+
 @media (max-width: 1239px) {
     .filter {
         left: calc(0% + 1.5rem);

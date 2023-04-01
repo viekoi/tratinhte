@@ -1,9 +1,9 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import classes from './NewView.module.css'
 const NewView = () => {
- let {state}= useLocation();
-  const newInfo  = state.props
+  let { state } = useLocation();
+  const newInfo = state.props
   const date = new Date(newInfo.date)
 
   return (
@@ -21,10 +21,10 @@ const NewView = () => {
               <div className={classes[`new-img`]}>
                 <img src={newInfo.image} alt="" />
               </div>
-              <p>{newInfo.content.map((content,index)=>{
+              <p>{newInfo.content.map((content, index) => {
                 return <p key={index}>{content}</p>
               })}</p>
-              
+
             </div>
           </div>
         </div>

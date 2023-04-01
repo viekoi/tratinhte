@@ -1,12 +1,13 @@
-import React,{useEffect,useState} from 'react'
-import {useParams} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 import * as Realm from 'realm-web'
 
 
 import Helmet from '../components/Helmet'
-import Section,{SectionBody,SectionTitle} from '../components/Section'
+import Section, { SectionBody, SectionTitle } from '../components/Section'
 import ProductCard from '../components/ProductCard'
 import ProductView from '../components/ProductView'
+import Loading from '../components/Loading'
 
 
 
@@ -17,10 +18,12 @@ const Product = () => {
 
   let { slug } = useParams();
 
-  const [products,setProducts] = useState([])
+  let { state } = useLocation();
 
-  
-  
+  const [products, setProducts] = useState([])
+
+
+
 
   const getAllProducts = async () => {
     const app = new Realm.App({ id: "application-0-xxkdi" });
@@ -30,15 +33,15 @@ const Product = () => {
       const mongo = app.currentUser.mongoClient("mongodb-atlas");
       const collection = mongo.db("myDB").collection("products");
       const products = await collection.aggregate([{
-        $lookup:{
-          from:"toppings",
-          localField:"toppings",
-          foreignField:"slug",
-          as:"toppings"
+        $lookup: {
+          from: "toppings",
+          localField: "toppings",
+          foreignField: "slug",
+          as: "toppings"
         }
-    }])
+      }])
       setProducts(products)
-    } catch(err) {
+    } catch (err) {
       console.error("Failed to log in", err);
     }
 
@@ -46,63 +49,64 @@ const Product = () => {
 
   }
 
- 
-    
+  let product
+  if (state) {
+    product = state.item
+  } else {
+    product = products.find((product) => {
+      return (product.slug === slug)
+    })
+  }
 
 
-
-
-
-  const product = products.find((product)=>{
-    return(product.slug === slug)
-  })
-
-  const relatedProducts =  products.filter(e =>{return((e.categorySlug===product.categorySlug) && (e.slug!==product.slug))})
+  const relatedProducts = products.filter(e => { return ((e.categorySlug === product.categorySlug) && (e.slug !== product.slug)) })
 
   useEffect(() => {
-    getAllProducts()
+    if (!state) {
+      getAllProducts()
+    }
 
   }, []);
 
- 
+
   return (
     <>
-    {product? <Helmet title={product.title}>
-      
-      <Section>
-        <SectionBody>
-        <ProductView product={product}></ProductView>
-        </SectionBody>
-      </Section>
-      <Section>
-        <SectionTitle>
-          Khám phá thêm
-        </SectionTitle>
-        <SectionBody>
+      {product ? <Helmet title={product.title}>
+
+        <Section>
+          <SectionBody>
+            <ProductView product={product}></ProductView>
+          </SectionBody>
+        </Section>
+        <Section>
+          <SectionTitle>
+            Khám phá thêm
+          </SectionTitle>
+          <SectionBody>
             <div className="grid wide">
               <div className="row">
                 {
-                  relatedProducts.map((item,index)=>{
-                    return(
-                      <ProductCard                      
-                      item={item} key={index}
-                      lcol={3}
-                      mcol={6}
-                      ccol={12}
+                  relatedProducts.map((item, index) => {
+                    return (
+                      <ProductCard
+                        item={item} key={index}
+                        lcol={3}
+                        mcol={6}
+                        ccol={12}
                       >
-                      
+
                       </ProductCard>
                     )
                   })
                 }
               </div>
             </div>
-        </SectionBody>
-      </Section>
+          </SectionBody>
+        </Section>
 
-    </Helmet> : <></>}
+      </Helmet> : <Loading></Loading>}
     </>
-   
+
   )
 }
 

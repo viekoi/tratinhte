@@ -1,6 +1,6 @@
 import classes from './ProductView.module.css'
-import React, { useState,useEffect,useReducer,useContext } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect, useReducer, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 
@@ -9,81 +9,81 @@ import Button from './Button'
 import CartContext from '../store/cart-context'
 
 const ProductView = props => {
- 
+
 
 
     let product = props.product
 
     const [size, setSize] = useState(product.size[0])
-    const toppingList = product.toppings.map((topping)=>{
-        return({name:topping.name,isChecked:false})
+    const toppingList = product.toppings.map((topping) => {
+        return ({ name: topping.name, isChecked: false })
     })
 
-    const [toppingActive,setToppingActive] = useState(toppingList)
-    const setSizeHander=(e)=>{
+    const [toppingActive, setToppingActive] = useState(toppingList)
+    const setSizeHander = (e) => {
         setSize(e)
         setSizeProducerHander(e)
     }
-    const setToppingActiveHander=(index,item)=>{
+    const setToppingActiveHander = (index, item) => {
         const newToppingActive = [...toppingActive]
         newToppingActive[index].isChecked = !newToppingActive[index].isChecked
         setToppingActive(newToppingActive)
         setSelectedToppingsProducerHander(item)
     }
-        
-    
-    
+
+
+
 
     useEffect(() => {
         setToppingActive(toppingList)
         setSize(product.size[0])
-    },[product] );
+    }, [product]);
 
 
 
 
-    const productDefaultState={
+    const productDefaultState = {
         ...product,
-        selectedToppings:[],
-        selectedSize:product.size[0],
-        price:product.priceOnSize[product.size[0]],
-        cartDescription:`${product.size[0]}`,
-        amount:1,
+        selectedToppings: [],
+        selectedSize: product.size[0],
+        price: product.priceOnSize[product.size[0]],
+        cartDescription: `${product.size[0]}`,
+        amount: 1,
 
     }
 
-    const productReducer = (state,action)=>{
-        
-        if(action.type === "SETSIZE"){
+    const productReducer = (state, action) => {
+
+        if (action.type === "SETSIZE") {
             const updatedSize = action.size
-            const updatedPrice = state.price*1 + state.priceOnSize[updatedSize]*1 - state.priceOnSize[state.selectedSize]*1
-            const updatedItem = {...state}
-            const updatedCartDescription = state.selectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,updatedSize)
-            updatedItem.selectedSize = updatedSize 
+            const updatedPrice = state.price * 1 + state.priceOnSize[updatedSize] * 1 - state.priceOnSize[state.selectedSize] * 1
+            const updatedItem = { ...state }
+            const updatedCartDescription = state.selectedToppings.reduce((accumulator, currentValue) => accumulator + " / " + currentValue.name, updatedSize)
+            updatedItem.selectedSize = updatedSize
             updatedItem.price = [updatedPrice]
             updatedItem.cartDescription = updatedCartDescription
             return updatedItem
         }
-        if(action.type==="SETTOPPING"){
+        if (action.type === "SETTOPPING") {
             const existingToppingIndex = state.selectedToppings.findIndex(
-                (item) => item.slug===action.item.slug
+                (item) => item.slug === action.item.slug
             );
 
-            if(existingToppingIndex===-1){
-                const updatedPrice = state.price*1 + action.item.price*1
-                const updatedSelectedToppings = [...state.selectedToppings,action.item].sort((a, b) =>
-                a.name.localeCompare(b.name))
-                const updatedCartDescription =updatedSelectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,state.selectedSize)
-                const updatedItem ={...state}
+            if (existingToppingIndex === -1) {
+                const updatedPrice = state.price * 1 + action.item.price * 1
+                const updatedSelectedToppings = [...state.selectedToppings, action.item].sort((a, b) =>
+                    a.name.localeCompare(b.name))
+                const updatedCartDescription = updatedSelectedToppings.reduce((accumulator, currentValue) => accumulator + " / " + currentValue.name, state.selectedSize)
+                const updatedItem = { ...state }
                 updatedItem.selectedToppings = updatedSelectedToppings
                 updatedItem.price = updatedPrice
                 updatedItem.cartDescription = updatedCartDescription
                 return updatedItem
-            }else{
-                const updatedSelectedToppings = state.selectedToppings.filter(topping => topping.slug!== action.item.slug);
-                const updatedPrice = state.price*1 - action.item.price*1
-                const updatedCartDescription = updatedSelectedToppings.reduce((accumulator,currentValue)=>accumulator +" / "+ currentValue.name,state.selectedSize)
-                const updatedItem ={...state}
+            } else {
+                const updatedSelectedToppings = state.selectedToppings.filter(topping => topping.slug !== action.item.slug);
+                const updatedPrice = state.price * 1 - action.item.price * 1
+                const updatedCartDescription = updatedSelectedToppings.reduce((accumulator, currentValue) => accumulator + " / " + currentValue.name, state.selectedSize)
+                const updatedItem = { ...state }
                 updatedItem.selectedToppings = updatedSelectedToppings
                 updatedItem.price = updatedPrice
                 updatedItem.cartDescription = updatedCartDescription
@@ -92,36 +92,36 @@ const ProductView = props => {
         }
     }
 
-    const setSizeProducerHander=(size)=>{
-        dispatchProductAction({type:"SETSIZE",size:size})
+    const setSizeProducerHander = (size) => {
+        dispatchProductAction({ type: "SETSIZE", size: size })
     }
 
-    const setSelectedToppingsProducerHander=(item)=>{
-        dispatchProductAction({type:"SETTOPPING",item:item})
+    const setSelectedToppingsProducerHander = (item) => {
+        dispatchProductAction({ type: "SETTOPPING", item: item })
     }
 
-    const [productState,dispatchProductAction] = useReducer(productReducer,productDefaultState)
+    const [productState, dispatchProductAction] = useReducer(productReducer, productDefaultState)
 
 
     const cartCtx = useContext(CartContext);
 
     const addToCartHandler = () => {
         cartCtx.addItem({
-          ...productState
+            ...productState
         });
-      };
+    };
 
-    const onAdd=()=>{
+    const onAdd = () => {
         addToCartHandler()
-        if(props.onClose){
+        if (props.onClose) {
             props.onClose()
         }
         alert("Thêm vào giỏ thành công!!!")
-        
-            
+
+
     }
     return (
-        
+
         <div className={classes.product}>
             <div className={classes.image}>
                 <img src={product.image} alt="" />
@@ -151,10 +151,10 @@ const ProductView = props => {
                             <div className={`${classes[`info-item-list`]} topping-list`}>
                                 {
                                     product.toppings.map((item, index) => {
-                                        
+
                                         return (
                                             <>
-                                                <div onClick={() => { setToppingActiveHander(index,item) }}  className={`${classes[`info-item-list-item`]} ${toppingActive[index].isChecked ? `active` : ``} topping-hover`} key={index}>
+                                                <div onClick={() => { setToppingActiveHander(index, item) }} className={`${classes[`info-item-list-item`]} ${toppingActive[index].isChecked ? `active` : ``} topping-hover`} key={index}>
                                                     <div className={`${classes.circle}`}> <img src={item.image} alt="" /> </div>
                                                     <div className={`${classes[`topping-item-description`]} bg-${product.color}`}>
                                                         <div className={classes[`topping-item-description-name`]}>{item.name}</div>
@@ -181,9 +181,9 @@ const ProductView = props => {
                         <div className={classes[`info-item-list`]} >
                             {
                                 product.size.map((item, index) => {
-                                    return(
-                                        <div onClick={() => { setSizeHander(item) }} className={`${classes[`info-item-list-item`]} ${size===item ? `active` : ``} `} key={index}>
-                                                   <div className={`${classes.circle} bg-${product.color}`}>{item}</div>
+                                    return (
+                                        <div onClick={() => { setSizeHander(item) }} className={`${classes[`info-item-list-item`]} ${size === item ? `active` : ``} `} key={index}>
+                                            <div className={`${classes.circle} bg-${product.color}`}>{item}</div>
                                         </div>
                                     )
                                 })
@@ -191,7 +191,7 @@ const ProductView = props => {
                         </div>
                     </div>
                 </div>
-              
+
                 <div className={classes[`info-item`]}>
                     <div className={classes[`info-item-content`]}>
                         <Link to='/cart'>
