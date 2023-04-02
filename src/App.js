@@ -45,7 +45,7 @@ function App() {
           <Route path='/catalog' element={<Catalog></Catalog>}></Route>
           <Route path='/cart' element={<Cart></Cart>}></Route>
           <Route path='/news' element={<News></News>}></Route>
-          <Route path='/news/:article' element={<NewView></NewView>}></Route>
+          <Route path='/news/:id' element={<NewView></NewView>}></Route>
           <Route path='/checkout' element={<CheckOut></CheckOut>}></Route>
         </Routes>
         <Footer></Footer>

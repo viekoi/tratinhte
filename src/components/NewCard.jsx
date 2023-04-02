@@ -5,7 +5,7 @@ const NewCard = (props) => {
     const date = new Date(props.item.date)
     return (
         <div className={`${classes.new} col l-${props.lcol} m-${props.mcol} c-${props.ccol} `}>
-            <Link to={`/news/${props.item.title}`} state={{ props: props.item }}>
+            <Link to={`/news/${props.item.id}`} state={{ news: props.item }}>
                 <div className={classes.img}>
                     <div href="" className="">
                         <img src={props.item.image} alt="" />

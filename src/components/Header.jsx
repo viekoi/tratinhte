@@ -24,10 +24,10 @@ const mainNav = [
     display: "Tin Tức",
     path: "/news"
   },
-  {
-    display: "Về Chúng Tôi",
-    path: "/aboutUs"
-  },
+  // {
+  //   display: "Về Chúng Tôi",
+  //   path: "/aboutUs"
+  // },
 
 ]
 
