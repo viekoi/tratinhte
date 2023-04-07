@@ -1,16 +1,19 @@
 import classes from './ProductView.module.css'
 import React, { useState, useEffect, useReducer, useContext } from 'react'
+import ReactDOM from "react-dom"
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 
 import Button from './Button'
+import Alert from './Alert'
 
 import CartContext from '../store/cart-context'
 
 const ProductView = props => {
 
 
+    const portalElement = document.getElementById('popupNoti');
 
     let product = props.product
 
@@ -111,14 +114,11 @@ const ProductView = props => {
         });
     };
 
+    const[showAlert,setShowAlert] = useState(false)
+
     const onAdd = () => {
         addToCartHandler()
-        if (props.onClose) {
-            props.onClose()
-        }
-        alert("Thêm vào giỏ thành công!!!")
-
-
+        setShowAlert(true)
     }
     return (
 
@@ -153,7 +153,6 @@ const ProductView = props => {
                                     product.toppings.map((item, index) => {
 
                                         return (
-                                            <>
                                                 <div onClick={() => { setToppingActiveHander(index, item) }} className={`${classes[`info-item-list-item`]} ${toppingActive[index].isChecked ? `active` : ``} topping-hover`} key={index}>
                                                     <div className={`${classes.circle}`}> <img src={item.image} alt="" /> </div>
                                                     <div className={`${classes[`topping-item-description`]} bg-${product.color}`}>
@@ -161,10 +160,7 @@ const ProductView = props => {
                                                         <div className={classes[`topping-item-description-price`]}>+{item.price.toLocaleString({ style: "currency", currency: "VND" })}<sup>đ</sup></div>
                                                     </div>
                                                 </div>
-                                            </>
-
-
-
+                                        
                                         )
                                     })
                                 }
@@ -213,6 +209,7 @@ const ProductView = props => {
                     </div>
                 </div>
             </div>
+            {showAlert && ReactDOM.createPortal(<Alert alert={`Thêm vào giỏ thành công !!!`} onShow={setShowAlert}></Alert>, portalElement)}
         </div>
     )
 }
