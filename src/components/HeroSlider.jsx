@@ -85,7 +85,6 @@ const HeroSliderItem = (props) => {
 
 
     return (
-
         <div className={`${classes[`item`]} ${props.active ? 'active' : ''}`}>
             <div className={classes.info} >
                 <div className={`${classes.title} color-${props.item.color}`}>

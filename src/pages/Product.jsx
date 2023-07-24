@@ -49,65 +49,67 @@ const Product = () => {
 
   }
 
-  let product
+  
   if (state) {
-    product = state.item
+    var product = state.item
   } else {
-    product = products.find((product) => {
+   var product = products.find((product) => {
       return (product.slug === slug)
     })
   }
 
 
   const relatedProducts = products.filter(e => { return ((e.categorySlug === product.categorySlug) && (e.slug !== product.slug)) })
-
   useEffect(() => {
-    if (!state) {
       getAllProducts()
-    }
-
   }, []);
 
 
+if(relatedProducts.length==0 || !product){
+  return(<Loading></Loading>)
+}else{
   return (
-    <>
-      {product ? <Helmet title={product.title}>
+    
+    <Helmet title={product.title}>
 
-        <Section>
-          <SectionBody>
-            <ProductView product={product}></ProductView>
-          </SectionBody>
-        </Section>
-        <Section>
-          <SectionTitle>
-            Khám phá thêm
-          </SectionTitle>
-          <SectionBody>
-            <div className="grid wide">
-              <div className="row">
-                {
-                  relatedProducts.map((item, index) => {
-                    return (
-                      <ProductCard
-                        item={item} key={index}
-                        lcol={3}
-                        mcol={6}
-                        ccol={12}
-                      >
+      <Section>
+        <SectionBody>
+          <ProductView product={product}></ProductView>
+        </SectionBody>
+      </Section>
+      <Section>
+        <SectionTitle>
+          Khám phá thêm
+        </SectionTitle>
+        <SectionBody>
+          <div className="grid wide">
+            <div className="row">
+              {
+                relatedProducts.map((item, index) => {
+                  return (
+                    <ProductCard
+                      item={item} key={index}
+                      lcol={3}
+                      mcol={6}
+                      ccol={12}
+                    >
 
-                      </ProductCard>
-                    )
-                  })
-                }
-              </div>
+                    </ProductCard>
+                  )
+                })
+              }
             </div>
-          </SectionBody>
-        </Section>
+          </div>
+        </SectionBody>
+      </Section>
 
-      </Helmet> : <Loading></Loading>}
-    </>
+    </Helmet>
+  
 
-  )
+)
 }
+}
+
+ 
 
 export default Product

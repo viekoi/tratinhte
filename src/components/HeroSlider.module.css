@@ -141,7 +141,9 @@
     100% {
         border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
     }
-}@media (max-width: 1239px){
+}
+
+@media (max-width: 1239px){
     .shape{
         height: 400px;
         width: 400px;
